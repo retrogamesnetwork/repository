@@ -1,0 +1,78 @@
+.navbar-logo-container {
+	height: 70%;
+}
+
+.navbar-logo-container img {
+	height: 100%;
+}
+
+.margin-right {
+	margin-right: 6px;
+}
+
+.search-line {
+	padding: 20px 20px 20px 40px;
+	background: rgb(255,59,59);
+	background: linear-gradient(90deg, rgba(255,59,59,1) 0%, rgba(255,73,255,1) 50%, rgba(255,215,56,1) 100%); 
+	min-height: 80px;
+}
+
+.callout {
+	margin: 20px 10px;
+}
+
+.callout h1.bp3-heading {
+	font-size: 22px;
+}
+
+.screenshots {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.screenshots img {
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.actions {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.actions a {
+	margin-top: 5px;
+}
+
+.catalog {
+	display: flex;
+	flex-direction: column;
+	margin: -40px 0 40px 80px;
+}
+
+.letter {
+	margin-top: 40px;
+	font-weight: bold;
+}
+
+.footer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	border-top: 1px solid rgba(0,0,0,.1);
+	padding-top: 40px;
+}
+
+.more {
+	display: flex;
+	flex-direction: column;
+}
+
+.more a {
+	margin-bottom: 10px;
+}

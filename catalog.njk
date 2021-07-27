@@ -1,0 +1,14 @@
+---
+layout: base.njk
+---
+
+<div class="catalog">
+	{% set letter = "" %}
+	{% for item in collections.games %}
+		{% if letter != item.data.shortTitle[0] %}
+			{% set letter = item.data.shortTitle[0] %}
+			<div class="letter">{{letter}}</div>
+		{% endif %}
+		<a href="{{item.url}}" target="_self">{{item.data.shortTitle}}</a>
+	{% endfor %}
+</div>

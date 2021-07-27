@@ -16,12 +16,13 @@ function minifyCss() {
         "node_modules/normalize.css/normalize.css",
         "node_modules/@blueprintjs/core/lib/css/blueprint.css",
         "node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css",
-        "node_modules/@blueprintjs/select/lib/css/blueprint-select.css"
+        "node_modules/@blueprintjs/select/lib/css/blueprint-select.css",
+        "src/style.css",
     ])
         .pipe(cleanCss())
         .pipe(concat("index.css"))
         .pipe(size({ showFiles: true, showTotal: false }))
-        .pipe(dest("_site/_assets"));
+        .pipe(dest("_site/resources"));
 }
 
 function compileJs() {
@@ -46,7 +47,7 @@ function compileJs() {
         .pipe(terser())
         .pipe(sourcemaps.write("./"))
         .pipe(size({ showFiles: true, showTotal: false }))
-        .pipe(dest("_site/_assets"));
+        .pipe(dest("_site/resources"));
 }
 
 exports.default = parallel(compileJs, minifyCss);

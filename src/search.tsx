@@ -1,13 +1,13 @@
 import ReactDom from "react-dom";
 import React, { useEffect, useState } from "react";
 
-import { Spinner, MenuItem, Intent } from "@blueprintjs/core";
+import { MenuItem } from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
 import { Suggest } from "@blueprintjs/select";
 
 import fuzzysort from "fuzzysort";
 
-const indexFile = "/_assets/index.json";
+const indexFile = "/resources/index.json";
 const maxItems = 30;
 
 interface IndexDocument {
@@ -63,8 +63,8 @@ export function Search() {
 	};
 
 	return <div>
-		{indexJson === null ? <Spinner /> : null}
 		<Suggest
+			disabled={indexJson === null}
 			items={items}
 			onQueryChange={onQueryChange}
 			noResults={<div>No Results</div>}
@@ -79,6 +79,8 @@ export function Search() {
 			}
 			inputProps={{
 				leftIcon: IconNames.SEARCH,
+				large: true,
+				round: true,
 			}}
 			popoverProps={{
 				minimal: true,
@@ -91,7 +93,7 @@ export function Search() {
 }
 
 function openSlug(slug: string) {
-	window.location.pathname = "/" + slug +".html";
+	window.location.pathname = "/" + slug + "/";
 }
 
 

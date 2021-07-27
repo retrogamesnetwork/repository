@@ -26,10 +26,60 @@
     <link rel="preconnect" href="{{ metadata.url }}">
     <link rel="me" href="{{ metadata.url }}" type="text/html">
     <link rel="me" href="mailto:{{ metadata.mail }}">
-    <link rel="stylesheet" href="/_assets/index.css">
+    <link rel="stylesheet" href="/resources/index.css">
   </head>
   <body>
-    {{ content | safe }}
-    <script src="/_assets/index.js" async></script>
+    <div class="root">
+      <nav class="bp3-navbar">
+        <div class="bp3-navbar-group bp3-align-left">
+          <div class="bp3-navbar-heading navbar-logo-container">
+            <a href="/" target="_self"><img src="/resources/logo-wide.png" alt="Logo"/> </a>
+          </div>
+        </div>
+        <div class="bp3-navbar-group bp3-align-right">
+          <!-- <button class="bp3-button bp3-minimal bp3-icon-user">Log in</button> -->
+          <span class="bp3-navbar-divider"></span>
+          <a href="https://twitter.com/intent/user?screen_name=doszone_db" class="margin-right" target="_blank" rel="noopener noreferrer">
+            <img src="/resources/twitter.svg" alt="twitter" width="20px"/>
+          </a>
+          <a href="https://discord.com/invite/hMVYEbG" target="_blank" rel="noopener noreferrer">
+            <img src="/resources/discord.svg" alt="discord" width="24px"/>
+          </a>
+        </div>
+      </nav>
+    </div>
+    <div class="search-line">
+      <div id="search"></div>
+    </div>
+    <div class="content">
+      {{ content | safe }}
+    </div>
+    
+    <div class="footer">
+      <div class="author">
+        <h4>Catalog</h4>
+        <a href="/catalog/" target="_self">Catalog</a>
+      </div>
+      <div class="docs">
+        <h4>Powered by js-dos</h4>
+        <a href="https://js-dos.com/v7/build/">Docs</a>
+        <h4>Author</h4>
+        <a href="https://twitter.com/intent/user?screen_name=caiiiycuk" target="_blank">@caiiiycuk</a>, {{page.date.getFullYear()}}
+      </div>
+      <div class="more">
+        <h4>More</h4>
+        <a href="https://github.com/js-dos/repository">
+          GitHub
+        </a>
+        <a href="https://twitter.com/intent/user?screen_name=doszone_db" class="margin-right" target="_blank" rel="noopener noreferrer">
+          Twitter
+        </a>
+        <a href="https://discord.com/invite/hMVYEbG" target="_blank" rel="noopener noreferrer">
+          Discord
+        </a>
+      </div>
+    </div>
+
+    <script src="/resources/index.js" async></script>
   </body>
 </html>
