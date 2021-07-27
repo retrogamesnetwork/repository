@@ -8,7 +8,7 @@ import { Suggest } from "@blueprintjs/select";
 import fuzzysort from "fuzzysort";
 
 const indexFile = "/_assets/index.json";
-const maxItems = 10;
+const maxItems = 30;
 
 interface IndexDocument {
 	k: string,
