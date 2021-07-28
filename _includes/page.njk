@@ -1,0 +1,90 @@
+---
+layout: base.njk
+---
+
+{% set cloud = false %}
+{% set js = false %}
+{% for bundle in bundles %}
+	{% if bundle.type == "cloud"%}
+		{% set cloud = true %}
+	{% endif %}
+	{% if bundle.type == "js"%}
+		{% set js = true %}
+	{% endif %}
+{% endfor %}
+
+<div class="callout">
+	<div class="bp3-callout bp3-intent-success">
+	  <h1 class="bp3-heading">{{shortTitle}} | Play | Download | Fork </h1>
+	  <div class="actions">
+
+		{% if js == true %}
+		<h3 class="">Browser Version</h3>
+		{% for bundle in bundles %}
+			{% if bundle.type == "js" %}
+				<div class="bundle-row">
+					<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-play" href="/en/my/{{bundle.url}}" target="_self" type="button">
+						Play online
+					</a>
+					<span class="bp3-tag bp3-minimal bp3-intent-primary">{{bundle.lang}}</span>
+					{% if bundle.mobile == true %}
+					<span class="bp3-tag bp3-minimal bp3-intent-success">Mobile</span>
+					{% else %}
+					<span class="bp3-tag bp3-intent-warning">No Mobile Controls</span>
+					{% endif %}
+					{% if bundle.title != "" %}
+					<span class="bp3-tag bp3-minimal">{{bundle.title}}</span>
+					{% endif %}
+				</div>
+				<a class="fork bp3-button bp3-minimal bp3-intent-primary bp3-icon-fork" href="/en/studio/{{bundle.url}}" target="_self" type="button">
+					Fork in Game Studio
+				</a>
+			{% endif %}
+		{% endfor %}
+		{% endif %}
+
+		{% if cloud == true %}
+		<h3 class="">Cloud Version</h3>
+		{% for bundle in bundles %}
+			{% if bundle.type == "cloud" %}
+				<div class="bundle-row">
+					<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-fast-forward" href="/en/my/{{bundle.url}}" target="_self" type="button">
+						Play in Cloud
+					</a>
+					<span class="bp3-tag bp3-minimal bp3-intent-primary">{{bundle.lang}}</span>
+					{% if bundle.mobile == true %}
+					<span class="bp3-tag bp3-minimal bp3-intent-success">Mobile</span>
+					{% else %}
+					<span class="bp3-tag bp3-intent-warning">No Mobile Controls</span>
+					{% endif %}
+					{% if bundle.title != "" %}
+					<span class="bp3-tag bp3-minimal">{{bundle.title}}</span>
+					{% endif %}
+				</div>
+			{% endif %}
+		{% endfor %}
+		{% endif %}
+		
+	  </div>
+	</div>
+</div>
+
+<div class="callout">
+	<div class="bp3-callout">
+	  <h4 class="bp3-heading">Screenshots</h4>
+	  <div class="screenshots">
+        {% for item in screenshots %}
+    		<img src="{{item}}" alt="screenshot" />
+  		{% endfor %}
+      </div>
+	</div>
+</div>
+
+<div class="callout">
+	<div class="bp3-callout bp3-running-text">
+	  <h4 class="bp3-heading">Description</h4>
+	  <p>{{description}}</p>
+	</div>
+</div>
+
+<a class="edit-page" href="https://github.com/js-dos/repository/issues/new?title={{permalink}}" target="_blank">Edit the page</a>
