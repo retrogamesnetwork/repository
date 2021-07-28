@@ -4,12 +4,16 @@ layout: base.njk
 
 {% set cloud = false %}
 {% set js = false %}
+{% set android = false %}
 {% for bundle in bundles %}
-	{% if bundle.type == "cloud"%}
+	{% if bundle.type == "cloud" %}
 		{% set cloud = true %}
 	{% endif %}
-	{% if bundle.type == "js"%}
+	{% if bundle.type == "js" or bundle.type == "external-js" %}
 		{% set js = true %}
+	{% endif %}
+	{% if bundle.type == "android" %}
+		{% set android = true %}
 	{% endif %}
 {% endfor %}
 
@@ -18,14 +22,42 @@ layout: base.njk
 	  <h1 class="bp3-heading">{{shortTitle}} | Play | Download | Fork </h1>
 	  <div class="actions">
 
-		{% if js == true %}
-		<h3 class="">Browser Version</h3>
+		{% if android == true %}
+		<h3>Android Version</h3>
 		{% for bundle in bundles %}
-			{% if bundle.type == "js" %}
+			{% if bundle.type == "android" %}
+				<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-mobile-phone" href="{{bundle.url}}" target="_blank" type="button">
+					Install {{bundle.title}}
+				</a>
+			{% endif %}
+			{% if bundle.type == "datafile" %}
+				<div class="datafile bundle-row">
+					<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-download" href="/en/my/{{bundle.url}}" target="_self" type="button">
+						Download data file
+					</a>
+					<span class="bp3-tag bp3-minimal bp3-intent-primary">{{bundle.lang}}</span>
+					{% if bundle.title != "" %}
+					<span class="bp3-tag bp3-minimal">{{bundle.title}}</span>
+					{% endif %}
+				</div>
+			{% endif %}
+		{% endfor %}
+		{% endif %}
+
+		{% if js == true %}
+		<h3>Browser Version</h3>
+		{% for bundle in bundles %}
+			{% if bundle.type == "js" or bundle.type == "external-js" %}
 				<div class="bundle-row">
+					{% if bundle.type == "js" %}
 					<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-play" href="/en/my/{{bundle.url}}" target="_self" type="button">
 						Play online
 					</a>
+					{% else %}
+					<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-play" href="{{bundle.url}}" target="_self" type="button">
+						Play online
+					</a>
+					{% endif %}
 					<span class="bp3-tag bp3-minimal bp3-intent-primary">{{bundle.lang}}</span>
 					{% if bundle.mobile == true %}
 					<span class="bp3-tag bp3-minimal bp3-intent-success">Mobile</span>
@@ -36,15 +68,17 @@ layout: base.njk
 					<span class="bp3-tag bp3-minimal">{{bundle.title}}</span>
 					{% endif %}
 				</div>
+				{% if bundle.type == "js" %}
 				<a class="fork bp3-button bp3-minimal bp3-intent-primary bp3-icon-fork" href="/en/studio/{{bundle.url}}" target="_self" type="button">
 					Fork in Game Studio
 				</a>
+				{% endif %}
 			{% endif %}
 		{% endfor %}
 		{% endif %}
 
 		{% if cloud == true %}
-		<h3 class="">Cloud Version</h3>
+		<h3>Cloud Version</h3>
 		{% for bundle in bundles %}
 			{% if bundle.type == "cloud" %}
 				<div class="bundle-row">
