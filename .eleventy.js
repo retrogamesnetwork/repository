@@ -81,6 +81,7 @@ module.exports = function(config) {
 
   config.addPassthroughCopy("resources");
   config.addPassthroughCopy(".well-known");
+  config.addPassthroughCopy("robots.txt");
 
   config.addCollection("featured", function(collectionApi) {
     const all = collectionApi.getAll();

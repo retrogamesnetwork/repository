@@ -49,6 +49,6 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "scripts": {
-    "build": "eleventy && gulp"
+    "build": "eleventy && NODE_ENV=production gulp"
   }
 }
