@@ -1,10 +1,8 @@
 {
-  "description": "Ultimate collection of free js-dos bundles",
   "favicon": "/resources/favicon.ico",
   "share": "/resources/logo-192.png",
-  "url": "https://dos.zone",
+  "rootUrl": "https://dos.zone",
   "author": "caiiiycuk",
   "mail": "caiiiycuk@gmail.com",
-  "lang": "en",
   "social": "doszone_db"
 }

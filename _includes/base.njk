@@ -4,29 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <meta name="description" content="{{ metadata.description }}">
-    <meta property="og:locale" content="{{ metadata.lang }}">
-    <meta property="og:site_name" content="{{ metadata.site_name }}">
+    <meta name="description" content="{{ ogDescription }}">
+    <meta property="og:locale" content="en">
+    <meta property="og:site_name" content="DOS Zone">
     <meta property="og:title" content="{{ title }}">
-    <meta property="og:url" content="{{ metadata.url }}">
+    <meta property="og:url" content="{{ metadata.rootUrl}}{{ page.url }}">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="{{ metadata.description }}">
-    <meta property="og:image:url" content="{{ metadata.url }}{{ metadata.share }}">
-    <meta property="og:image" content="{{ metadata.url }}{{ metadata.share }}">
+    <meta property="og:description" content="{{ ogDescription }}">
+    <meta property="og:image:url" content="{{ screenshots[0] }}">
+    <meta property="og:image" content="{{ screenshots[0] }}">
     <meta name="twitter:title" content="{{ title }}">
-    <meta name="twitter:url" content="{{ metadata.url }}">
-    <meta name="twitter:description" content="{{ metadata.description }}">
-    <meta name="twitter:image" content="{{ metadata.url }}{{ metadata.share }}">
+    <meta name="twitter:url" content="{{metadata.rootUrl}}{{ page.url }}">
+    <meta name="twitter:description" content="{{ ogDescription }}">
+    <meta name="twitter:image" content="{{ screenshots[0] }}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@{{ metadata.social }}">
     <meta name="twitter:dnt" content="on">
-    <title>{{ title }}</title>
+    <title>{{title}}</title>
     <link rel="icon" type="image/png" href="{{ metadata.favicon }}">
-    <link rel="dns-prefetch" href="{{ metadata.url }}">
-    <link rel="preconnect" href="{{ metadata.url }}">
-    <link rel="me" href="{{ metadata.url }}" type="text/html">
-    <link rel="me" href="mailto:{{ metadata.mail }}">
+    <link rel="dns-prefetch" href="{{ metadata.rootUrl }}">
+    <link rel="preconnect" href="{{ metadata.rootUrl }}">
+    <link rel="me" href="https://twitter.com/intent/user?screen_name=caiiiycuk" type="text/html">
+    <link rel="me" href="mailto:caiiiycuk@gmail.com">
     <link rel="stylesheet" href="/resources/index.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5L33M3K6MQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5L33M3K6MQ');
+    </script>
+
   </head>
   <body>
     <div class="root">

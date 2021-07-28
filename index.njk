@@ -1,8 +1,35 @@
 ---
 layout: base.njk
+title: "DOS Zone | Repository"
+description: "Ultimate collection of free js-dos bundles."
+ogDescription: "Ultimate collection of free js-dos bundles. Search for your favorite game and download js-dos bundle OR play in browser!"
+screenshots: ["https://cdn.dos.zone/original/2X/6/696b53945c63e21fbfb127602a9df0b4ae9c185f.jpeg"]
 ---
 
 <div class="hero">
-	<h1>{{metadata.description}}</h1>
+	<h1>{{description}}</h1>
 	<p><span>{{collections.all.length}}</span> bundles are ready to run in browser</p>
 </div>
+
+{% for collection in collections.featured %}
+<div class="callout callout-top-list">
+	<div class="bp3-callout bp3-intent-{{collection.intent}}">
+		<h1 class="bp3-heading">{{collection.name}}</h1>
+		<div class="top-list">
+			{% for next in collection.pages%}
+			<a class="top-item " href="{{next.url}}" target="_self">
+				<div class="bp3-card bp3-interactive">
+					<h2>{{next.title}}</h2>
+					<img data-src="{{next.screenshot}}" alt="screenshot" class="lazyload" />
+				</div>
+			</a>
+			{% endfor %}
+			<div class="top-list-shadow">
+			</div>
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+
+<script src="/resources/lazysizes.min.js" async></script>
