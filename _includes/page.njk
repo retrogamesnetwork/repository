@@ -29,19 +29,22 @@ layout: base.njk
 				<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-mobile-phone" href="{{bundle.url}}" target="_blank" type="button">
 					Install {{bundle.title}}
 				</a>
+				<details id="datafiles" class="datafiles" >
+					<summary>Data Files</summary>
 			{% endif %}
 			{% if bundle.type == "datafile" %}
-				<div class="datafile bundle-row">
-					<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-download" href="/en/my/{{bundle.url}}" target="_self" type="button">
-						Download data file
-					</a>
-					<span class="bp3-tag bp3-minimal bp3-intent-primary">{{bundle.lang}}</span>
-					{% if bundle.title != "" %}
-					<span class="bp3-tag bp3-minimal">{{bundle.title}}</span>
-					{% endif %}
-				</div>
+					<div class="{{ "heartbeat" if bundle.lang == "ENG" }} bundle-row">
+						<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-download" href="/en/my/{{bundle.url}}" target="_self" type="button">
+							Download data file
+						</a>
+						<span class="bp3-tag bp3-minimal bp3-intent-primary">{{bundle.lang}}</span>
+						{% if bundle.title != "" %}
+						<span class="bp3-tag bp3-minimal">{{bundle.title}}</span>
+						{% endif %}
+					</div>
 			{% endif %}
 		{% endfor %}
+				</details>
 		{% endif %}
 
 		{% if js == true %}
