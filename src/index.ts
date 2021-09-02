@@ -1,8 +1,10 @@
 import { initSearch } from "./search";
+import { initPlayer } from "./player";
 
 function init() {
 	initDatafilesViewIfNeeded();
 	initSearch();
+	initPlayer();
 }
 
 function initDatafilesViewIfNeeded() {

@@ -2986,6 +2986,16 @@ emoji-regex@^8.0.0:
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
   integrity sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==
 
+emulators-ui@^0.71.5:
+  version "0.71.5"
+  resolved "https://registry.yarnpkg.com/emulators-ui/-/emulators-ui-0.71.5.tgz#cac467aff0416699647c6eb75cb24a534bb89c43"
+  integrity sha512-+omid6p/IKKeJ+p66+GzDahwLU6FjeaN2RVvcpP1afhESj/SX1wF5oae7YlmKia5WWRUh/CC73RDiTJvPNDinQ==
+
+emulators@^0.71.0:
+  version "0.71.0"
+  resolved "https://registry.yarnpkg.com/emulators/-/emulators-0.71.0.tgz#4c66c8334c6c291366e11026eb378350b0bc1d68"
+  integrity sha512-0vy1huJEwxF43PB2ezWT35hDwDH9BExwiC0c8ovl4x4toNSXShcpIZQk/4V6+cbPH/lxuO4ENhW3H5FfyAspkw==
+
 encodeurl@~1.0.1, encodeurl@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/encodeurl/-/encodeurl-1.0.2.tgz#ad3ff4c86ec2d029322f5a02c3a9a606c95b3f59"
@@ -4545,6 +4555,11 @@ js-beautify@^1.6.12:
     editorconfig "^0.15.3"
     glob "^7.1.3"
     nopt "^5.0.0"
+
+js-dos@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/js-dos/-/js-dos-7.1.1.tgz#79f38afd0172f288c24b903e4c297d26d5d686ab"
+  integrity sha512-e1nQR1O8EI/V5JFoSGCWpPq+lntzJsrGB+oeo1EMW7XAoyLnmMb9VPxec1CnaS6psOCzSuesUmmiwqjzfLqWMQ==
 
 js-stringify@^1.0.2:
   version "1.0.2"
