@@ -1,7 +1,7 @@
-import { DosFactoryType } from "emulators-ui/dist/types/js-dos";
+import { DosPlayerFactoryType } from "js-dos";
 import { cdnUrl } from "./cdn";
 
-declare const Dos: DosFactoryType;
+declare const Dos: DosPlayerFactoryType;
 
 export function initPlayer() {
 	const frame = document.getElementsByClassName("jsdos-frame")[0] as HTMLDivElement;
@@ -28,7 +28,10 @@ export function initPlayer() {
 		e.preventDefault();
 	};
 
-	const dos = Dos(root, {});
+	const dos = Dos(root, {
+		hardware: (window as any).hardware,
+	});
+
 	for (let i = 0; i < bundles.length; ++i) {
 		const el = bundles[i] as HTMLAnchorElement;
 		el.addEventListener("click", (ev) => {
