@@ -285,3 +285,18 @@
     font-size: 10vw;
     text-transform: uppercase;
 }
+
+.logo-link {
+    background: url(/resources/logo192.png) left center no-repeat;
+    background-size: contain;
+    width: 40px;
+    display: block;
+    height: 100%;
+}
+
+@media screen and (min-width: 600px) {
+	.logo-link {
+	    background-image: url(/resources/logo-wide.png);
+		width: 150px;
+    }
+}
