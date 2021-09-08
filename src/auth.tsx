@@ -107,7 +107,7 @@ function uiLogout() {
 }
 
 export async function login(): Promise<User | null> {
-	talksLogin();
+	await talksLogin();
 	return null;
 }
 

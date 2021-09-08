@@ -9,6 +9,7 @@ export function initPlayer() {
 	const root = document.getElementsByClassName("jsdos-content")[0] as HTMLDivElement;
 	const close = document.getElementsByClassName("jsdos-close")[0] as HTMLDivElement;
 	const saving = document.getElementsByClassName("jsdos-saving")[0] as HTMLDivElement;
+	const savingText = document.getElementsByClassName("jsdos-saving-text")[0] as HTMLDivElement;
 
 	if (!frame || !root || !close) {
 		return;
@@ -77,18 +78,30 @@ export function initPlayer() {
 		})
 	}
 
+	let savingProgress = "|";
 	close.addEventListener("click", async (ev) => {
 		close.classList.add("gone");
 		saving.classList.remove("gone");
+		const intervalId = setInterval(() => {
+			savingText.innerText = "Saving [" + savingProgress + "]";
+			switch (savingProgress) {
+				case "|": savingProgress = "/"; break;
+				case "/": savingProgress = "—"; break;
+				case "—": savingProgress = "\\"; break;
+				case "\\": savingProgress = "|"; break;
+			}
+		}, 150);
 		ev.stopPropagation();
 		ev.preventDefault();
 
 		await dos.layers.save()
 			.then(() => {
+				clearInterval(intervalId);
 				saving.classList.add("gone");
 				close.classList.remove("gone");
 			})
 			.catch(() => {
+				clearInterval(intervalId);
 				saving.classList.add("gone");
 				close.classList.remove("gone");
 			})
