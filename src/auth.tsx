@@ -8,6 +8,7 @@ import {
 	authenticate as talksAuthenticate,
 	requestLogout as talksLogout,
 } from "./auth-talks";
+import { base64ToString, stringToBase64 } from "./base64";
 
 const userKey = "zone.dos.user.v2";
 const userCookie = userKey.replace(/\./g, "_");
@@ -27,10 +28,8 @@ export function getLoggedUser(): User | null {
 	for (const next of document.cookie.split("; ")) {
 		if (next.startsWith(userCookie + "=")) {
 			const cookieValue = next.substr((userCookie + "=").length);
-			if (cookieValue.length === 0) {
-				return null;
-			} else {
-				return JSON.parse(atob(cookieValue));
+			if (cookieValue.length > 0) {
+				return JSON.parse(base64ToString(cookieValue));
 			}
 		}
 	}
@@ -55,7 +54,7 @@ export function setLoggedUser(user: User | null) {
 		} catch (e) {
 			// do nothing
 		}
-		document.cookie = userCookie + "=" + btoa(stringified) + ";path=/;max-age=2592000";
+		document.cookie = userCookie + "=" + stringToBase64(stringified) + ";path=/;max-age=2592000";
 	}
 }
 
