@@ -1,10 +1,12 @@
 import { initSearch } from "./search";
 import { initPlayer } from "./player";
+import { initAuth } from "./auth";
 
 function init() {
 	initDatafilesViewIfNeeded();
 	initSearch();
 	initPlayer();
+	initAuth();
 }
 
 function initDatafilesViewIfNeeded() {

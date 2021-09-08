@@ -249,5 +249,39 @@
 }
 
 .gone {
-	display: none;
+	display: none !important;
+}
+
+.auth-logout {
+	display: flex;
+	align-items: center;
+}
+
+.avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 5px;
+    border: 1px solid #2B95D6;
+}
+
+.jsdos-saving {
+    z-index: 999;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jsdos-saving-text {
+    color: white;
+    font-family: monospace;
+    font-size: 10vw;
+    text-transform: uppercase;
 }

@@ -1,7 +1,7 @@
 import ReactDom from "react-dom";
 import React, { useEffect, useState } from "react";
 
-import { Button, Intent, MenuItem } from "@blueprintjs/core";
+import { MenuItem } from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
 import { Suggest } from "@blueprintjs/select";
 
@@ -89,18 +89,12 @@ export function Search() {
 			}}
 			onItemSelect={i => openSlug(i.obj.v)}
 		/>
-		<Button minimal={true} large={true} icon={IconNames.HEART} intent={Intent.DANGER} onClick={openFavorites} />
 	</div>;
 }
 
 function openSlug(slug: string) {
 	window.location.pathname = "/" + slug + "/";
 }
-
-function openFavorites() {
-	window.location.pathname = "/en/my";
-}
-
 
 export function initSearch() {
 	const domContainer = document.querySelector("#search");

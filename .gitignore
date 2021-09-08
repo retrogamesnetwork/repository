@@ -105,3 +105,5 @@ dist
 
 #_generated
 _site
+
+sls/private
