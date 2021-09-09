@@ -106,9 +106,10 @@ export function initPlayer() {
 				close.classList.remove("gone");
 			})
 
-		await dos.stop();
 		frame.classList.add("gone");
 		window.removeEventListener("keydown", preventListener, { capture: true });
+		
+		await dos.stop();
 	}, { capture: true });
 
 

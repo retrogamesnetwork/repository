@@ -4556,10 +4556,10 @@ js-beautify@^1.6.12:
     glob "^7.1.3"
     nopt "^5.0.0"
 
-js-dos@^7.1.8:
-  version "7.1.8"
-  resolved "https://registry.yarnpkg.com/js-dos/-/js-dos-7.1.8.tgz#4d65b9b4030aeb610664e895304f965fd28abe22"
-  integrity sha512-fon6h4ZA6jbojtNjbbrDRCrBr+5DPUEqciqcAAlwFKDYVya9DB4oG74FugOPfjubD8BUDwvuWwNdkpkF1z6otA==
+js-dos@^7.1.10:
+  version "7.1.10"
+  resolved "https://registry.yarnpkg.com/js-dos/-/js-dos-7.1.10.tgz#4a07dc6753530a20e639a51affda179fa678ffd8"
+  integrity sha512-75hnlCc4WgqPP/MJsVFti7BZR1xWABAFoCE7jehVPxiO7cFM1JF/x1mhVwSCyUer0xmBI0+xpX4dxmTw5TB6og==
 
 js-stringify@^1.0.2:
   version "1.0.2"
