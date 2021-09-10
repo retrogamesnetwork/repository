@@ -4,16 +4,23 @@ import { Icon, Button, Intent, Spinner } from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
 
 import {
+	init as talksInit,
 	requestLogin as talksLogin,
-	authenticate as talksAuthenticate,
 	requestLogout as talksLogout,
 } from "./auth-talks";
+
+import {
+	init as gapiInit,
+	requestLogout as gapiLogout
+} from "./auth-gapi";
+
 import { base64ToString, stringToBase64 } from "./base64";
 
 const userKey = "zone.dos.user.v2";
 const userCookie = userKey.replace(/\./g, "_");
 
 export interface User {
+	namespace: "doszone" | "dzapi",
 	avatarUrl: string,
 	email: string,
 	nonce: string,
@@ -58,25 +65,49 @@ export function setLoggedUser(user: User | null) {
 	}
 }
 
+
+const loginFrame = document.querySelector(".jsdos-login-frame") as HTMLDivElement;
+const loginTalksButton = document.querySelector(".jsdos-login-talks") as HTMLDivElement;
+const loginCloseButton = document.querySelector(".jsdos-login-close") as HTMLDivElement;
+
+loginTalksButton.addEventListener("click", () => {
+	talksLogin();
+	loginTalksButton.classList.add("bp3-disabled");
+});
+loginCloseButton.addEventListener("click", hideLoginFrame);
+
+function showLoginFrame() {
+	loginFrame.classList.remove("gone");
+	loginTalksButton.classList.remove("bp3-disabled");
+}
+
+function hideLoginFrame() {
+	loginFrame.classList.add("gone");
+}
+
 function Auth() {
 	useEffect(() => {
-		talksAuthenticate().then((user) => {
+		loginCloseButton.addEventListener("click", () => setBusy(false));
+	}, []);
+
+	useEffect(() => {
+		if (getLoggedUser() !== null) {
+			return;
+		}
+
+		const onUserLogin = (user: User) => {
 			setLoggedUser(user);
 			setUser(user);
 			setBusy(false);
-		}).catch(() => { /**/ });
+			hideLoginFrame();
+		}
+
+		gapiInit(onUserLogin);
+		talksInit(onUserLogin);
 	}, []);
 
 	const [busy, setBusy] = useState<boolean>(false);
 	const [user, setUser] = useState<User | null>(getLoggedUser());
-
-	async function uiLogin() {
-		setBusy(true);
-		const user = await login();
-		setLoggedUser(user);
-		setUser(user);
-		setBusy(false);
-	}
 
 	if (busy) {
 		return <Spinner size={20}></Spinner>
@@ -84,7 +115,10 @@ function Auth() {
 
 	return user === null ?
 		<div>
-			<Button minimal={true} icon={IconNames.LOG_IN} intent={Intent.WARNING} onClick={uiLogin}>Log in</Button>
+			<Button minimal={true} icon={IconNames.LOG_IN} intent={Intent.WARNING} onClick={() => {
+				setBusy(true);
+				showLoginFrame();
+			}}>Log in</Button>
 		</div> :
 		<div className="auth-logout">
 			{user.avatarUrl !== undefined ?
@@ -95,8 +129,10 @@ function Auth() {
 }
 
 function uiLogout() {
+	gapiLogout();
 	talksLogout(getLoggedUser());
 	setLoggedUser(null);
+
 	const queryIndex = window.location.href.indexOf("?");
 	if (queryIndex > 0) {
 		window.location.href = window.location.href.substr(0, queryIndex);
@@ -105,9 +141,16 @@ function uiLogout() {
 	}
 }
 
-export async function login(): Promise<User | null> {
-	await talksLogin();
-	return null;
+export function login(): Promise<User | null> {
+	return new Promise<User | null>((resolve) => {
+		loginFrame.classList.remove("gone");
+		const testInterval = setInterval(() => {
+			if (loginFrame.classList.contains("gone")) {
+				resolve(getLoggedUser());
+				clearInterval(testInterval);
+			}
+		}, 100);
+	});
 }
 
 export function initAuth() {

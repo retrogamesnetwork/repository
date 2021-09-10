@@ -44,7 +44,7 @@ export function initPlayer() {
 			}
 
 			return {
-				namespace: "doszone",
+				namespace: user.namespace || "doszone",
 				id: user.email,
 			}
 		}

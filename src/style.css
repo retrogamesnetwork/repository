@@ -300,3 +300,37 @@
 		width: 150px;
     }
 }
+
+.jsdos-login-frame {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+	display: flex;
+
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+
+.jsdos-login {
+	min-width: 400px;
+	margin-top: -20%;
+	z-index: 999;
+}
+
+.jsdos-login-talks {
+	margin-top: 15px;
+	height: 36px;
+	width: 100%;
+}
+
+.jsdos-login-gapi,
+.jsdos-login-gapi > div {
+	width: 100% !important;
+}
+
+.jsdos-login h1 {
+	text-align: center;
+}

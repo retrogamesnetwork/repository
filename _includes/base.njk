@@ -20,6 +20,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@{{ metadata.social }}">
     <meta name="twitter:dnt" content="on">
+    <meta name="google-signin-client_id" content="673757892813-i4bas1tjuac7t1crf0v6olm4o2e99ct8.apps.googleusercontent.com">
     <title>{{title}}</title>
     <link rel="icon" type="image/png" href="{{ metadata.favicon }}">
     <link rel="dns-prefetch" href="{{ metadata.rootUrl }}">
@@ -28,16 +29,15 @@
     <link rel="me" href="mailto:caiiiycuk@gmail.com">
     <link rel="stylesheet" href="/resources/js-dos/js-dos.css">
     <link rel="stylesheet" href="/resources/index.css">
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5L33M3K6MQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
-
       gtag('config', 'G-5L33M3K6MQ');
     </script>
-
   </head>
   <body>
     <div class="root">
@@ -50,7 +50,11 @@
         <div class="bp3-navbar-group bp3-align-right">
           <div id="auth"></div>
           <span class="bp3-navbar-divider"></span>
-          <a href="https://twitter.com/intent/user?screen_name=doszone_db" class="margin-right" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://twitter.com/intent/user?screen_name=doszone_db"
+            class="margin-right"
+            target="_blank"
+            rel="noopener noreferrer">
             <img src="/resources/twitter.svg" alt="twitter" width="20px"/>
           </a>
           <a href="https://t.me/doszone" class="margin-right" target="_blank" rel="noopener noreferrer">
@@ -68,7 +72,6 @@
     <div class="content">
       {{ content | safe }}
     </div>
-    
     <div class="footer">
       <div class="author">
         <h4>Catalog</h4>
@@ -85,7 +88,11 @@
         <a href="https://github.com/js-dos/repository">
           GitHub
         </a>
-        <a href="https://twitter.com/intent/user?screen_name=doszone_db" class="margin-right" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://twitter.com/intent/user?screen_name=doszone_db"
+          class="margin-right"
+          target="_blank"
+          rel="noopener noreferrer">
           Twitter
         </a>
         <a href="https://discord.com/invite/hMVYEbG" target="_blank" rel="noopener noreferrer">
@@ -93,7 +100,6 @@
         </a>
       </div>
     </div>
-
     <div class="jsdos-frame gone">
       <div class="jsdos-close">X</div>
       <div class="jsdos-content"></div>
@@ -101,12 +107,22 @@
         <div class="jsdos-saving-text">Saving</div>
       </div>
     </div>
-
+    <div class="jsdos-login-frame gone">
+      <div class="jsdos-login bp3-card bp3-elevation-4">
+        <H1>Login</H1>
+        <br/>
+        <div class="jsdos-login-gapi" id="googleLogin"></div>
+        <div class="jsdos-login-talks bp3-button">DOS.Zone Sign in</div>
+        <br/>
+        <div class="bp3-divider"></div>
+        <div class="jsdos-login-close bp3-button">Close</div>
+      </div>
+    </div>
     <script src="/resources/js-dos/js-dos.js"></script>
     <script>
       emulators.pathPrefix = "/resources/js-dos/";
     </script>
-
+    <script src="https://apis.google.com/js/platform.js"></script>
     <script src="/resources/index.js" async></script>
   </body>
 </html>

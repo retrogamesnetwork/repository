@@ -27,7 +27,7 @@ export function requestLogout(user: User | null): void {
 	}
 }
 
-export async function authenticate() {
+export function init(onSuccess: (user: User) => void) {
 	const queryParams = parseQuery(window.location.search) || {};
 
 	const sso = queryParams.sso;
@@ -35,7 +35,7 @@ export async function authenticate() {
 
 	if (sso && sig) {
 		const payload = parseQuery(base64ToString(sso));
-		const user = await validateUser({
+		validateUser({
 			avatarUrl: payload.avatar_url,
 			email: payload.email,
 			username: payload.username,
@@ -43,10 +43,14 @@ export async function authenticate() {
 			sso,
 			sig,
 			time: Date.now(),
-		});
-		return user;
-	} else {
-		throw new Error("No sso & sig in request");
+		} as User)
+			.then((user) => {
+				if (user !== null) {
+					user.namespace = "doszone";
+					onSuccess(user)
+				}
+			})
+			.catch(console.error);
 	}
 }
 
