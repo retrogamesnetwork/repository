@@ -20,10 +20,9 @@ export async function requestLogin() {
 	}
 }
 
-export function requestLogout(user: User | null): void {
+export async function requestLogout(user: User | null): Promise<void> {
 	if (user !== null) {
-		GET_OBJECT(ssoLogout + "?sso=" + user.sso + "&sig=" + user.sig)
-			.catch(console.error);
+		await GET_OBJECT(ssoLogout + "?sso=" + user.sso + "&sig=" + user.sig).catch(console.error);
 	}
 }
 

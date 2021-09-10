@@ -24,7 +24,7 @@ export async function init(onSuccess: (user: User) => void) {
 	})
 }
 
-export async function requestLogout(): Promise<void> {
+export function requestLogout() {
 	try {
 		gapi.auth2.getAuthInstance().signOut();
 	} catch (e) {

@@ -128,17 +128,29 @@ function Auth() {
 		</div>;
 }
 
-function uiLogout() {
-	gapiLogout();
-	talksLogout(getLoggedUser());
+async function uiLogout() {
+	try {
+		gapiLogout();
+	} catch (e) {
+		// ignore
+	}
+
+	try {
+		await talksLogout(getLoggedUser());
+	} catch (e) {
+		// ignore
+	}
+
 	setLoggedUser(null);
 
-	const queryIndex = window.location.href.indexOf("?");
-	if (queryIndex > 0) {
-		window.location.href = window.location.href.substr(0, queryIndex);
-	} else {
-		window.location.reload();
-	}
+	setTimeout(() => {
+		const queryIndex = window.location.href.indexOf("?");
+		if (queryIndex > 0) {
+			window.location.href = window.location.href.substr(0, queryIndex);
+		} else {
+			window.location.reload();
+		}
+	});
 }
 
 export function login(): Promise<User | null> {
