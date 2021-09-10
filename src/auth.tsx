@@ -14,7 +14,14 @@ import {
 	requestLogout as gapiLogout
 } from "./auth-gapi";
 
+import {
+	init as nativeGapiInit,
+	requestLogin as nativeGapiLogin
+} from "./auth-native-gapi";
+
 import { base64ToString, stringToBase64 } from "./base64";
+
+declare const nativeGapi: any;
 
 const userKey = "zone.dos.user.v2";
 const userCookie = userKey.replace(/\./g, "_");
@@ -67,6 +74,8 @@ export function setLoggedUser(user: User | null) {
 
 
 const loginFrame = document.querySelector(".jsdos-login-frame") as HTMLDivElement;
+const loginGapiButton = document.querySelector(".jsdos-login-gapi") as HTMLDivElement;
+const loginNativeGapiButton = document.querySelector(".jsdos-login-native-gapi") as HTMLDivElement;
 const loginTalksButton = document.querySelector(".jsdos-login-talks") as HTMLDivElement;
 const loginCloseButton = document.querySelector(".jsdos-login-close") as HTMLDivElement;
 
@@ -75,6 +84,14 @@ loginTalksButton.addEventListener("click", () => {
 	loginTalksButton.classList.add("bp3-disabled");
 });
 loginCloseButton.addEventListener("click", hideLoginFrame);
+
+if (typeof nativeGapi === "undefined") {
+	loginNativeGapiButton.classList.add("gone");
+} else {
+	loginGapiButton.classList.add("gone");
+	loginNativeGapiButton.classList.add("bp3-intent-primary")
+	loginNativeGapiButton.addEventListener("click", nativeGapiLogin);
+}
 
 function showLoginFrame() {
 	loginFrame.classList.remove("gone");
@@ -102,6 +119,7 @@ function Auth() {
 			hideLoginFrame();
 		}
 
+		nativeGapiInit(onUserLogin);
 		gapiInit(onUserLogin);
 		talksInit(onUserLogin);
 	}, []);
@@ -129,17 +147,7 @@ function Auth() {
 }
 
 async function uiLogout() {
-	try {
-		gapiLogout();
-	} catch (e) {
-		// ignore
-	}
-
-	try {
-		talksLogout(getLoggedUser());
-	} catch (e) {
-		// ignore
-	}
+	const loggedUser = getLoggedUser();
 
 	setLoggedUser(null);
 
@@ -151,6 +159,21 @@ async function uiLogout() {
 			window.location.reload();
 		}
 	}, 1000);
+
+	try {
+		if (typeof nativeGapi === "undefined") {
+			gapiLogout(loggedUser);
+		}
+	} catch (e) {
+		// ignore
+	}
+
+	try {
+		await talksLogout(loggedUser);
+	} catch (e) {
+		// ignore
+	}
+
 }
 
 export function login(): Promise<User | null> {

@@ -21,13 +21,11 @@ export async function init(onSuccess: (user: User) => void) {
 		onerror: (err: any) => {
 			console.error('Google signIn2.render button err: ' + err)
 		}
-	})
+	});
 }
 
-export function requestLogout() {
-	try {
+export function requestLogout(user: User | null) {
+	if (user !== null && user.namespace === "dzapi") {
 		gapi.auth2.getAuthInstance().signOut();
-	} catch (e) {
-		console.error("gapi logout error:", e);
 	}
 }
