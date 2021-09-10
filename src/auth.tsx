@@ -23,6 +23,7 @@ import { base64ToString, stringToBase64 } from "./base64";
 
 declare const nativeGapi: any;
 
+const useCookie = false;
 const userKey = "zone.dos.user.v2";
 const userCookie = userKey.replace(/\./g, "_");
 
@@ -38,12 +39,14 @@ export interface User {
 }
 
 export function getLoggedUser(): User | null {
-	// read cookie first
-	for (const next of document.cookie.split("; ")) {
-		if (next.startsWith(userCookie + "=")) {
-			const cookieValue = next.substr((userCookie + "=").length);
-			if (cookieValue.length > 0) {
-				return JSON.parse(base64ToString(cookieValue));
+	if (useCookie) {
+		// read cookie first
+		for (const next of document.cookie.split("; ")) {
+			if (next.startsWith(userCookie + "=")) {
+				const cookieValue = next.substr((userCookie + "=").length);
+				if (cookieValue.length > 0) {
+					return JSON.parse(base64ToString(cookieValue));
+				}
 			}
 		}
 	}
