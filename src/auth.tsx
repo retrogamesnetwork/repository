@@ -136,7 +136,7 @@ async function uiLogout() {
 	}
 
 	try {
-		await talksLogout(getLoggedUser());
+		talksLogout(getLoggedUser());
 	} catch (e) {
 		// ignore
 	}
@@ -150,7 +150,7 @@ async function uiLogout() {
 		} else {
 			window.location.reload();
 		}
-	});
+	}, 1000);
 }
 
 export function login(): Promise<User | null> {

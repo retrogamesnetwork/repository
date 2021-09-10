@@ -21,7 +21,7 @@ export async function requestLogin() {
 }
 
 export async function requestLogout(user: User | null): Promise<void> {
-	if (user !== null) {
+	if (user !== null && user.namespace === "doszone") {
 		await GET_OBJECT(ssoLogout + "?sso=" + user.sso + "&sig=" + user.sig).catch(console.error);
 	}
 }
