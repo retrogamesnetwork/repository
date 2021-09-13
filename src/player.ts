@@ -1,6 +1,7 @@
 import { DosPlayerFactoryType } from "js-dos";
 import { getLoggedUser, login } from "./auth";
 import { cdnUrl } from "./cdn";
+import { dhry2Bundle, Dhry2Decorator as addDhry2Decorator} from "./dhry2";
 
 declare const Dos: DosPlayerFactoryType;
 
@@ -65,8 +66,12 @@ export function initPlayer() {
 			}
 
 			frame.classList.remove("gone");
-			setTimeout(() => {
-				dos.run(bundleUrl);
+			setTimeout(async () => {
+				const isDhry2Bundle = bundleUrl.indexOf(dhry2Bundle) >= 0;
+				const ci = await dos.run(bundleUrl);
+				if (isDhry2Bundle) {
+					addDhry2Decorator(dos, ci);
+				}
 			}, 100);
 
 
