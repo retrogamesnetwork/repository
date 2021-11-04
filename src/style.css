@@ -209,10 +209,10 @@
 
 .jsdos-frame {
     position: fixed;
-    left: 5%;
-    top: 5%;
-    right: 5%;
-    bottom: 5%;
+    left: 20px;
+    top: 20px;
+    right: 25px;
+    bottom: 25px;
 
 	background: #00A8A8;
   	box-shadow: 15px 15px rgba(0, 0, 0, 0.5);
@@ -226,26 +226,6 @@
 	position: relative;
 	width: 100%;
 	height: 100%;
-}
-
-.jsdos-close {
-    color: #fff;
-    font-family: monospace;
-    font-weight: 800;
-    cursor: pointer;
-    font-size: 15px;
-    position: absolute;
-    top: 0;
-    right: 15px;
-    background: #00a8a8;
-    margin-top: -35px;
-    height: 35px;
-    width: 35px;
-    line-height: 32px;
-    text-align: center;
-    border: 5px double #fff;
-    text-decoration: underline;
-    border-bottom: none;
 }
 
 .gone {
@@ -264,26 +244,6 @@
     cursor: pointer;
     margin-right: 5px;
     border: 1px solid #2B95D6;
-}
-
-.jsdos-saving {
-    z-index: 999;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.jsdos-saving-text {
-    color: white;
-    font-family: monospace;
-    font-size: 10vw;
-    text-transform: uppercase;
 }
 
 .logo-link {

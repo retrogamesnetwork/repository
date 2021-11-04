@@ -62,7 +62,7 @@ export function Search() {
 		setQuery(newQuery);
 	};
 
-	return <div className="search-content">
+	return <div className="search-content not-prevent-key-events">
 		<Suggest
 			disabled={indexJson === null}
 			items={items}
