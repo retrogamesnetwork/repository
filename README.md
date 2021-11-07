@@ -1,6 +1,8 @@
-# repository
+# Repository of Dos.Zone
 
-Repository of js-dos bundles
+[![Build](https://github.com/js-dos/repository/actions/workflows/yarn-build.yml/badge.svg)](https://github.com/js-dos/repository/actions/workflows/yarn-build.yml)
+
+Ultimate collection of free js-dos bundles.
 
 ## How to build
 
