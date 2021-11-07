@@ -26,7 +26,7 @@ export function Dhry2Decorator(dos: DosPlayer, ci: CommandInterface) {
 
     ci.events().onStdout = (fn: (message: string) => void) => {
         listeners.push(fn);
-    }
+    };
 
     // listen program outpus for `~>dtime` marker
     ci.events().onStdout((message) => {
