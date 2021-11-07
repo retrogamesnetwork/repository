@@ -30,8 +30,6 @@ function compileJs() {
         debug: true,
         basedir: ".",
         entries: ["src/index.ts"],
-        cache: {},
-        packageCache: {},
     })
         .plugin(tsify, {
             "target": "esnext",
