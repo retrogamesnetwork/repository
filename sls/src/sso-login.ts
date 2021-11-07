@@ -12,4 +12,4 @@ export const ssoLogin: Handler = async (event: any) => {
     const valid = await validateSession(user, userAgent ? (new Buffer(userAgent, "base64").toString("utf-8")) : "N/A");
 
     return success({ user: valid ? user : null });
-}
+};

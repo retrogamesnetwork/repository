@@ -21,7 +21,7 @@ export async function getSession(nonce: string): Promise<Session | undefined> {
         TableName,
         Key: {
             nonce,
-        }
+        },
     }).promise();
 
     if (response.Item === undefined) {

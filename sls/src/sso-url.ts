@@ -9,4 +9,4 @@ export const ssoUrl: Handler = async (event: any) => {
     const url = makeUrl(nonce, backUrl);
 
     return success({ url });
-}
+};

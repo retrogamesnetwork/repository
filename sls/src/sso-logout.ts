@@ -14,4 +14,4 @@ export const ssoLogout: Handler = async (event: any) => {
     await deleteSession(user);
 
     return success({});
-}
+};

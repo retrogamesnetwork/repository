@@ -31,14 +31,14 @@ function compileJs() {
         basedir: ".",
         entries: ["src/index.ts"],
         cache: {},
-        packageCache: {}
+        packageCache: {},
     })
         .plugin(tsify, {
             "target": "esnext",
         })
-        .transform('babelify', {
-            presets: [['@babel/preset-env', { 'useBuiltIns': 'usage', 'corejs': 3 }]],
-            extensions: ['.ts']
+        .transform("babelify", {
+            presets: [["@babel/preset-env", { "useBuiltIns": "usage", "corejs": 3 }]],
+            extensions: [".ts"],
         })
         .bundle()
         .pipe(source("index.js"))
