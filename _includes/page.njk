@@ -34,11 +34,11 @@ layout: base.njk
 			{% endif %}
 			{% if bundle.type == "datafile" %}
 					<div class="bundle-row items-center">
-						<a class="flex flex-row items-center px-4 py-1 my-1 text-blue-400 cursor-pointer rounded-md border-2 border-blue-400" href="/en/my/{{bundle.url}}" target="_blank" type="button">
+						<a class="flex flex-row items-center button-blue" href="/en/my/{{bundle.url}}" target="_blank" type="button">
                             <svg class="{{ "animate-bounce" if bundle.lang == "ENG" }} mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
-							Download data file
+							Data file
 						</a>
 						<span class="tag-primary">{{bundle.lang}}</span>
 						{% if bundle.title != "" %}
@@ -59,13 +59,8 @@ layout: base.njk
 					<a class="button-green my-1 jsdos-bundle" href="/rep/my/{{bundle.url}}" target="_self" type="button">
 						Play online
 					</a>
-				    <a class="mx-2 self-center text-black cursor-pointer" href="/studio/?url={{bundle.url}}" target="_blank" type="button">
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
-				    </a>
 					{% else %}
-					<a class="button-green my-1" href="{{bundle.url}}" target="_self" type="button">
+					<a class="button-green my-1" href="{{bundle.url}}" target="_blank" type="button">
 						Play online
 					</a>
 					{% endif %}
@@ -78,6 +73,13 @@ layout: base.njk
 					{% if bundle.title != "" %}
 					<span class="tag">{{bundle.title}}</span>
 					{% endif %}
+                    {% if bundle.type == "js" %}
+				    <a class="ml-2 self-center text-black cursor-pointer" href="/studio/?url={{bundle.url}}" target="_blank" type="button">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+				    </a>
+                    {% endif %}
 				</div>
 			{% endif %}
 		{% endfor %}

@@ -1,7 +1,7 @@
-import ReactDom from "react-dom";
-import React, { useEffect, useState } from "react";
-import { Icon, Button, Intent, Spinner } from "@blueprintjs/core";
-import { IconNames } from "@blueprintjs/icons";
+import { render } from "preact";
+import { useEffect, useState } from "preact/hooks";
+import { html } from "./html";
+import { Icons } from "./icons";
 
 import {
     init as talksInit,
@@ -84,7 +84,7 @@ const loginCloseButton = document.querySelector(".jsdos-login-close") as HTMLDiv
 
 loginTalksButton.addEventListener("click", () => {
     talksLogin();
-    loginTalksButton.classList.add("bp3-disabled");
+    loginTalksButton.classList.add("disabled");
 });
 loginCloseButton.addEventListener("click", hideLoginFrame);
 
@@ -92,13 +92,13 @@ if (typeof nativeGapi === "undefined") {
     loginNativeGapiButton.classList.add("gone");
 } else {
     loginGapiButton.classList.add("gone");
-    loginNativeGapiButton.classList.add("bp3-intent-primary");
+    loginNativeGapiButton.classList.add("text-blue-400");
     loginNativeGapiButton.addEventListener("click", nativeGapiLogin);
 }
 
 function showLoginFrame() {
     loginFrame.classList.remove("gone");
-    loginTalksButton.classList.remove("bp3-disabled");
+    loginTalksButton.classList.remove("disabled");
 }
 
 function hideLoginFrame() {
@@ -131,22 +131,25 @@ function Auth() {
     const [user, setUser] = useState<User | null>(getLoggedUser());
 
     if (busy) {
-        return <Spinner size={20}></Spinner>;
+        return html`<${Icons.Refresh} class="h-4 w-4 text-gray-400 animate-spin" />`;
+    }
+
+    function onLogin() {
+        setBusy(true);
+        showLoginFrame();
     }
 
     return user === null ?
-        <div>
-            <Button minimal={true} icon={IconNames.LOG_IN} intent={Intent.WARNING} onClick={() => {
-                setBusy(true);
-                showLoginFrame();
-            }}>Log in</Button>
-        </div> :
-        <div className="auth-logout">
-            {user.avatarUrl !== undefined ?
-                <img className="avatar" src={user.avatarUrl} alt="" /> :
-                <Icon iconSize={16} icon={IconNames.USER} />}
-            <Button minimal={true} icon={IconNames.LOG_OUT} onClick={uiLogout}></Button>
-        </div>;
+        html`<div class="flex flex-row text-blue-400 cursor-pointer">
+            <${Icons.Login} class="h-6 w-6 mr-2" />
+            <div class="" onClick=${onLogin}>Log in</div>
+        </div>` :
+        html`<div class="auth-logout text-gray-400 cursor-pointer" onClick=${uiLogout} >
+            ${user.avatarUrl !== undefined ?
+        html`<img class="avatar" src=${user.avatarUrl} alt="" />` :
+        html`<${Icons.UserCircle} class="h-6 w-6 mr-2" />`}
+            <${Icons.Logout} class="h-6 w-6" />
+        </div>`;
 }
 
 async function uiLogout() {
@@ -193,6 +196,6 @@ export function login(): Promise<User | null> {
 export function initAuth() {
     const domContainer = document.querySelector("#auth");
     if (domContainer !== null) {
-        ReactDom.render(<Auth />, domContainer);
+        render(html`<${Auth} />`, domContainer);
     }
 }

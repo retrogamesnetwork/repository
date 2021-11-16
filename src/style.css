@@ -12,6 +12,10 @@
     @apply bg-gradient-to-br from-green-400 to-green-600 text-white px-4 py-1 rounded cursor-pointer;
 }
 
+.button-blue {
+    @apply bg-gradient-to-br from-blue-400 to-blue-600 text-white px-4 py-1 rounded cursor-pointer;
+}
+
 .tag {
     @apply rounded px-2 py-1 text-sm text-black bg-gray-300;
 }
