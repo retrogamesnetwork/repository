@@ -1,20 +1,54 @@
-.navbar-logo-container {
-	height: 70%;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    a {
+      @apply text-blue-400;
+    }
 }
 
-.navbar-logo-container img {
-	height: 100%;
+.button-green {
+    @apply bg-gradient-to-br from-green-400 to-green-600 text-white px-4 py-1 rounded cursor-pointer;
 }
 
-.margin-right {
-	margin-right: 6px;
+.tag {
+    @apply rounded px-2 py-1 text-sm text-black bg-gray-300;
+}
+
+.tag-success {
+    @apply rounded px-2 py-1 text-sm text-black bg-green-300;
+}
+
+.tag-primary {
+    @apply rounded px-2 py-1 text-sm text-black bg-blue-300;
+}
+
+.tag-warning {
+    @apply rounded px-2 py-1 text-sm text-black bg-yellow-300;
+}
+
+.logo {
+    background-image: url(/resources/logo192.png);
+    @apply w-10;
+}
+
+@media screen and (min-width: 600px) {
+	.logo {
+	    background-image: url(/resources/logo-wide.png);
+        @apply w-36;
+    }
 }
 
 .search-line {
-	padding: 20px 20px 20px 40px;
-	background: rgb(255,59,59);
-	background: linear-gradient(90deg, rgba(255,59,59,1) 0%, rgba(255,73,255,1) 50%, rgba(255,215,56,1) 100%); 
+    @apply p-5 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500;
 	min-height: 80px;
+}
+
+/* TODO: refactor to use tailwind.css */
+
+.margin-right {
+	margin-right: 6px;
 }
 
 .callout {
@@ -42,10 +76,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-}
-
-.actions a {
-	margin-top: 5px;
 }
 
 .catalog {
@@ -79,29 +109,6 @@
 	margin-bottom: 10px;
 }
 
-.hero {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	flex-direction: column;
-}
-
-.hero h1 {
-	font-size: 3em;
-	margin: 0.67em 2em;
-}
-
-.hero p {
-	font-size: 1.5em;
-	margin: 0 2em;
-}
-
-.hero span {
-	color: #0F9960;
-	font-weight: bold;
-}
-
 .search-content {
 	display: flex;
 	flex-direction: row;
@@ -111,46 +118,12 @@
 	margin-left: 10px;
 }
 
-.top-list {
-	display: flex;
-	flex-direction: row;
-	padding: 20px 0 10px 0;
-	overflow-x: auto;
-}
-
-.top-item {
-	margin-left: 20px;
-	flex-shrink: 0;
-	flex-grow: 0;
-}
-
-.top-item h2 {
-	margin: 0 0 10px 0;
-	max-width: 256px;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-}
-
-.top-item img {
-	height: 160px;
-}
-
 .callout-top-list {
 	margin-top: 100px;
 }
 
 .callout-top-list h1 {
 	margin-top: 20px !important;
-}
-
-.top-list-shadow {
-	position: absolute;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	width: 10%;
-	background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.8) 100%);
 }
 
 .edit-page {
@@ -171,7 +144,6 @@
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	align-items: baseline;
 }
 
 .bundle-row span {
@@ -244,21 +216,6 @@
     cursor: pointer;
     margin-right: 5px;
     border: 1px solid #2B95D6;
-}
-
-.logo-link {
-    background: url(/resources/logo192.png) left center no-repeat;
-    background-size: contain;
-    width: 40px;
-    display: block;
-    height: 100%;
-}
-
-@media screen and (min-width: 600px) {
-	.logo-link {
-	    background-image: url(/resources/logo-wide.png);
-		width: 150px;
-    }
 }
 
 .jsdos-login-frame {

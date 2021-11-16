@@ -3,24 +3,20 @@ import { src, dest, parallel } from "gulp";
 import size from "gulp-size";
 import sourcemaps from "gulp-sourcemaps";
 import terser from "gulp-terser";
-import cleanCss from "gulp-clean-css";
-import concat from "gulp-concat";
 import buffer from "vinyl-buffer";
 import source from "vinyl-source-stream";
+import { execute } from "./execute";
 
 // eslint-disable-next-line
 const tsify = require("tsify");
 
-function minifyCss() {
-    return src([
-        "node_modules/normalize.css/normalize.css",
-        "node_modules/@blueprintjs/core/lib/css/blueprint.css",
-        "node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css",
-        "node_modules/@blueprintjs/select/lib/css/blueprint-select.css",
-        "src/style.css",
-    ])
-        .pipe(cleanCss())
-        .pipe(concat("index.css"))
+async function css() {
+    await execute("yarn", "run",
+        "tailwindcss",
+        "-i", "src/style.css",
+        "-o", "build/index.css");
+
+    return src("build/index.css")
         .pipe(size({ showFiles: true, showTotal: false }))
         .pipe(dest("_site/resources"));
 }
@@ -48,6 +44,6 @@ function compileJs() {
         .pipe(dest("_site/resources"));
 }
 
-exports.default = parallel(compileJs, minifyCss);
+exports.default = parallel(compileJs, css);
 exports.js = compileJs;
-exports.css = minifyCss;
+exports.css = css;

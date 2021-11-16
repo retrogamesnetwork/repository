@@ -1,6 +1,5 @@
 const featuredMeta = [{
   name: "HOT PICKS",
-  intent: "success",
   entries: [
     "/doom-dec-1993/", 
     "/dune-ii-the-building-of-a-dynasty-dec-1992/",
@@ -11,7 +10,6 @@ const featuredMeta = [{
   ],
 }, {
   name: "Action | Platform |Arcade",
-  intent: "primary",
   entries: [
     "/out-of-this-world-1992/",
     "/disneys-aladdin-1994/",
@@ -26,7 +24,6 @@ const featuredMeta = [{
   ],
 }, {
   name: "DOOM Like (FPS)",
-  intent: "success",
   entries: [
     "/doom-ii-oct-10-1994/",
     "/wolfenstein-3d-may-05-1992/",
@@ -35,7 +32,6 @@ const featuredMeta = [{
   ]
 }, {
   name: "Strategy | Simulation",
-  intent: "primary",
   entries: [
     "/oregon-trail-deluxe-1992/",
     "/sim-city-1989/",
@@ -45,7 +41,6 @@ const featuredMeta = [{
   ]
 }, {
   name: "X-COM",
-  intent: "success",
   entries: [
     "/x-com-ufo-defense-1994/",
     "/x-com-terror-from-the-deep-1995/",
@@ -53,7 +48,6 @@ const featuredMeta = [{
   ]
 }, {
   name: "Racing",
-  intent: "primary",
   entries: [
     "/the-need-for-speed-sep-1995/", 
     "/indianapolis-500-the-simulation-dec-1989/",
@@ -61,7 +55,6 @@ const featuredMeta = [{
   ]
 }, {
   name: "Bonus",
-  intent: "success",
   entries: [
     "/the-lost-vikings-1993/",
     "/kings-bounty-1990/",
@@ -70,9 +63,6 @@ const featuredMeta = [{
     "/arkanoid-nov-1988/",
   ]
 }];
-
-
-
 
 module.exports = function(config) {
   config.addFilter("cssmin", function(code) {

@@ -17,29 +17,32 @@ layout: base.njk
 	{% endif %}
 {% endfor %}
 
-<div class="callout">
-	<div class="bp3-callout bp3-intent-success">
-	  <h1 class="bp3-heading">{{shortTitle}} | Play | Download | Fork </h1>
+<div class="bg-green-100 mx-2 my-4 rounded p-4">
+	<div class="">
+	  <h1 class="text-green-600 font-bold text-xl mb-2">{{shortTitle}} | Play | Download | Fork </h1>
 	  <div class="actions">
 
 		{% if android == true %}
-		<h3>Android Version</h3>
+		<h3 class="mt-2">Android Version</h3>
 		{% for bundle in bundles %}
 			{% if bundle.type == "android" %}
-				<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-mobile-phone" href="{{bundle.url}}" target="_blank" type="button">
+				<a class="button-green" href="{{bundle.url}}" target="_blank" type="button">
 					Install {{bundle.title}}
 				</a>
 				<details id="datafiles" class="datafiles" >
 					<summary>Data Files</summary>
 			{% endif %}
 			{% if bundle.type == "datafile" %}
-					<div class="{{ "heartbeat" if bundle.lang == "ENG" }} bundle-row">
-						<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-download" href="/en/my/{{bundle.url}}" target="_self" type="button">
+					<div class="bundle-row items-center">
+						<a class="flex flex-row items-center px-4 py-1 my-1 text-blue-400 cursor-pointer rounded-md border-2 border-blue-400" href="/en/my/{{bundle.url}}" target="_blank" type="button">
+                            <svg class="{{ "animate-bounce" if bundle.lang == "ENG" }} mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
 							Download data file
 						</a>
-						<span class="bp3-tag bp3-minimal bp3-intent-primary">{{bundle.lang}}</span>
+						<span class="tag-primary">{{bundle.lang}}</span>
 						{% if bundle.title != "" %}
-						<span class="bp3-tag bp3-minimal">{{bundle.title}}</span>
+						<span class="tag">{{bundle.title}}</span>
 						{% endif %}
 					</div>
 			{% endif %}
@@ -48,54 +51,54 @@ layout: base.njk
 		{% endif %}
 
 		{% if js == true %}
-		<h3>Browser Version</h3>
+		<h3 class="mt-2">Browser Version</h3>
 		{% for bundle in bundles %}
 			{% if bundle.type == "js" or bundle.type == "external-js" %}
-				<div class="bundle-row">
+				<div class="bundle-row items-center">
 					{% if bundle.type == "js" %}
-					<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-play jsdos-bundle" href="/rep/my/{{bundle.url}}" target="_self" type="button">
+					<a class="button-green my-1 jsdos-bundle" href="/rep/my/{{bundle.url}}" target="_self" type="button">
 						Play online
 					</a>
+				    <a class="mx-2 self-center text-black cursor-pointer" href="/studio/?url={{bundle.url}}" target="_blank" type="button">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+				    </a>
 					{% else %}
-					<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-play" href="{{bundle.url}}" target="_self" type="button">
+					<a class="button-green my-1" href="{{bundle.url}}" target="_self" type="button">
 						Play online
 					</a>
 					{% endif %}
-					<span class="bp3-tag bp3-minimal bp3-intent-primary">{{bundle.lang}}</span>
+					<span class="tag-primary">{{bundle.lang}}</span>
 					{% if bundle.mobile == true %}
-					<span class="bp3-tag bp3-minimal bp3-intent-success">Mobile</span>
+					<span class="tag-success">Mobile</span>
 					{% else %}
-					<span class="bp3-tag bp3-intent-warning">No Mobile Controls</span>
+					<span class="tag-warning">No Mobile Controls</span>
 					{% endif %}
 					{% if bundle.title != "" %}
-					<span class="bp3-tag bp3-minimal">{{bundle.title}}</span>
+					<span class="tag">{{bundle.title}}</span>
 					{% endif %}
 				</div>
-				{% if bundle.type == "js" %}
-				<a class="fork bp3-button bp3-minimal bp3-intent-primary bp3-icon-fork" href="/studio/?url={{bundle.url}}" target="_blank" type="button">
-					Fork in Game Studio
-				</a>
-				{% endif %}
 			{% endif %}
 		{% endfor %}
 		{% endif %}
 
 		{% if cloud == true %}
-		<h3>Cloud Version</h3>
+		<h3 class="mt-2">Cloud Version</h3>
 		{% for bundle in bundles %}
 			{% if bundle.type == "cloud" %}
-				<div class="bundle-row">
-					<a class="bp3-button bp3-minimal bp3-intent-primary bp3-icon-fast-forward" href="/en/my/{{bundle.url}}" target="_self" type="button">
+				<div class="bundle-row items-center">
+					<a class="button-green my-1" href="/en/my/{{bundle.url}}" target="_blank" type="button">
 						Play in Cloud
 					</a>
-					<span class="bp3-tag bp3-minimal bp3-intent-primary">{{bundle.lang}}</span>
+					<span class="tag-primary">{{bundle.lang}}</span>
 					{% if bundle.mobile == true %}
-					<span class="bp3-tag bp3-minimal bp3-intent-success">Mobile</span>
+					<span class="tag-success">Mobile</span>
 					{% else %}
-					<span class="bp3-tag bp3-intent-warning">No Mobile Controls</span>
+					<span class="tag-warning">No Mobile Controls</span>
 					{% endif %}
 					{% if bundle.title != "" %}
-					<span class="bp3-tag bp3-minimal">{{bundle.title}}</span>
+					<span class="tag">{{bundle.title}}</span>
 					{% endif %}
 				</div>
 			{% endif %}
@@ -106,20 +109,20 @@ layout: base.njk
 	</div>
 </div>
 
-<div class="callout">
-	<div class="bp3-callout">
-	  <h4 class="bp3-heading">Screenshots</h4>
-	  <div class="screenshots">
+<div class="bg-gray-100 mx-2 my-4 p-4">
+	<div class="flex flex-col">
+	  <h4 class="">Screenshots</h4>
+	  <div class="flex flex-row flex-nowrap overflow-x-auto">
         {% for item in screenshots %}
-    		<img src="{{item}}" alt="screenshot" />
+    		<img src="{{item}}" alt="screenshot" class="py-2 pr-4"/>
   		{% endfor %}
       </div>
 	</div>
 </div>
 
 <div class="callout">
-	<div class="bp3-callout bp3-running-text">
-	  <h4 class="bp3-heading">Description</h4>
+	<div class="">
+	  <h4 class="">Description</h4>
 	  <p>{{description | safe}}</p>
 	</div>
 </div>

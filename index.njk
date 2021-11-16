@@ -6,27 +6,23 @@ ogDescription: "Ultimate collection of free js-dos bundles. Search for your favo
 screenshots: ["https://cdn.dos.zone/original/2X/6/696b53945c63e21fbfb127602a9df0b4ae9c185f.jpeg"]
 ---
 
-<div class="hero">
-	<h1>{{description}}</h1>
-	<p><span>{{collections.all.length}}</span> bundles are ready to run in browser</p>
+<div class="flex flex-col items-center justify-center text-center">
+	<h1 class="text-2xl sm:text-4xl my-8 mx-3">{{description}}</h1>
+	<p class="text-1xl sm:text-2xl mb-4"><span class="text-green-600 font-bold">{{collections.all.length}}</span> bundles are ready to run in browser</p>
 </div>
 
 {% for collection in collections.featured %}
-<div class="callout callout-top-list">
-	<div class="bp3-callout bp3-intent-{{collection.intent}}">
-		<h1 class="bp3-heading">{{collection.name}}</h1>
-		<div class="top-list">
-			{% for next in collection.pages%}
-			<a class="top-item " href="{{next.url}}" target="_self">
-				<div class="bp3-card bp3-interactive">
-					<h2>{{next.title}}</h2>
-					<img data-src="{{next.screenshot}}" alt="screenshot" class="lazyload" />
-				</div>
-			</a>
-			{% endfor %}
-			<div class="top-list-shadow">
-			</div>
-		</div>
+<div class="mx-4 my-12 flex flex-col">
+	<h1 class="font-bold self-center bg-green-200 rounded-md w-max py-2 px-2 mb-4">{{collection.name}}</h1>
+	<div class="flex flex-row flex-nowrap overflow-x-auto lg:flex-wrap lg:justify-center">
+		{% for next in collection.pages%}
+		<div class="mx-2 flex-shrink-0">
+		    <a class="flex flex-col items-center" href="{{next.url}}" target="_self">
+				<h2 class="max-w-xs whitespace-nowrap overflow-ellipsis overflow-hidden text-center mb-2">{{next.title}}</h2>
+				<img data-src="{{next.screenshot}}" alt="screenshot" class="lazyload h-40 rounded" />
+		    </a>
+        </div>
+		{% endfor %}
 	</div>
 </div>
 {% endfor %}
