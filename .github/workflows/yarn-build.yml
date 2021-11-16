@@ -25,6 +25,7 @@ jobs:
     - name: Build
       run: |
         npm install -g yarn
+        cs sls && yarn && cd ..
         yarn
-        yarn run eslint . --ext tsx,ts --max-warnings 0
+        yarn run eslint . --ext ts --max-warnings 0
         yarn run build
