@@ -92,7 +92,7 @@ export function Search() {
             setSelected(newSelected);
         }
     };
-
+    /* eslint-disable max-len, indent */
     return html`<div class="search-content not-prevent-key-events relative">
         <input 
             class="px-4 py-2 font-xl bg-gray-200 border border-gray-500 w-full filter drop-shadow-xl" 
@@ -109,6 +109,7 @@ export function Search() {
             }
         </ul>
     </div>`;
+    /* eslint-enable max-len, indent */
 }
 
 function openSlug(slug: string) {
@@ -121,35 +122,3 @@ export function initSearch() {
         render(html`<${Search} />`, domContainer);
     }
 }
-/*
-
-        <Suggest
-            disabled={indexJson === null}
-            items={items}
-            onQueryChange={onQueryChange}
-            noResults={<div>No Results</div>}
-            inputValueRenderer={(item) => item.target}
-            itemRenderer={(item, props) =>
-                <MenuItem
-                    active={props.modifiers.active}
-                    onClick={props.handleClick}
-                    key={query + "-" + item.obj.v}
-                    text={<div dangerouslySetInnerHTML={{ __html: fuzzysort.highlight(item) || "-" }} ></div>}
-                />
-            }
-            inputProps={{
-                leftIcon: IconNames.SEARCH,
-                large: true,
-                round: true,
-            }}
-            popoverProps={{
-                minimal: true,
-                usePortal: false,
-                fill: true,
-            }}
-            onItemSelect={(i) => openSlug(i.obj.v)}
-        />
-
-
-
-       */
