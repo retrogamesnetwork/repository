@@ -6,10 +6,11 @@ import { dhry2Bundle, Dhry2Decorator as addDhry2Decorator } from "./dhry2";
 declare const Dos: DosPlayerFactoryType;
 
 export function initPlayer() {
+    const datafiles = (window.location.search || "").indexOf("datafiles=true") >= 0;
     const frame = document.getElementsByClassName("jsdos-frame")[0] as HTMLDivElement;
     const root = document.getElementsByClassName("jsdos-content")[0] as HTMLDivElement;
 
-    if (!frame || !root) {
+    if (!frame || !root || datafiles) {
         return;
     }
 
@@ -31,6 +32,7 @@ export function initPlayer() {
 
     // eslint-disable-next-line new-cap
     const dos = Dos(root, {
+        donate: true,
         hardware: (window as any).hardware,
         clientId: async (gesture: boolean) => {
             let user = getLoggedUser();
@@ -55,12 +57,12 @@ export function initPlayer() {
     for (let i = 0; i < bundles.length; ++i) {
         const el = bundles[i] as HTMLAnchorElement;
         el.addEventListener("click", (ev) => {
-            const index = el.href.indexOf("/rep/my/");
+            const index = el.href.indexOf("/my/");
             if (index === -1) {
                 return;
             }
 
-            const url = decodeURIComponent(el.href.substr(index + "/rep/my/".length));
+            const url = decodeURIComponent(el.href.substr(index + "/my/".length));
             const bundleUrl = cdnUrl(url);
             if (!bundleUrl) {
                 return;
