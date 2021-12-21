@@ -6,6 +6,7 @@ import terser from "gulp-terser";
 import buffer from "vinyl-buffer";
 import source from "vinyl-source-stream";
 import { execute } from "./execute";
+import { generateSearchIndex } from "./fuzzy";
 
 // eslint-disable-next-line
 const tsify = require("tsify");
@@ -44,6 +45,7 @@ function compileJs() {
         .pipe(dest("_site/resources"));
 }
 
-exports.default = parallel(compileJs, css);
+exports.default = parallel(compileJs, css, generateSearchIndex);
 exports.js = compileJs;
 exports.css = css;
+exports.fuzzy = generateSearchIndex;
