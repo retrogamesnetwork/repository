@@ -6,6 +6,7 @@ import { dhry2Bundle, Dhry2Decorator as addDhry2Decorator } from "./dhry2";
 declare const Dos: DosPlayerFactoryType;
 
 export function initPlayer() {
+    const body = document.body;
     const datafiles = (window.location.search || "").indexOf("datafiles=true") >= 0;
     const frame = document.getElementsByClassName("jsdos-frame")[0] as HTMLDivElement;
     const root = document.getElementsByClassName("jsdos-content")[0] as HTMLDivElement;
@@ -50,6 +51,7 @@ export function initPlayer() {
             };
         },
         onExit: () => {
+            body.classList.remove("disable-selection");
             frame.classList.add("gone");
         },
     });
@@ -68,7 +70,9 @@ export function initPlayer() {
                 return;
             }
 
+            body.classList.add("disable-selection");
             frame.classList.remove("gone");
+
             setTimeout(async () => {
                 const isDhry2Bundle = bundleUrl.indexOf(dhry2Bundle) >= 0;
                 const ci = await dos.run(bundleUrl);

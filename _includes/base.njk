@@ -64,7 +64,12 @@
       </nav>
     </div>
     <div class="search-line">
-      <div id="search"></div>
+      <div id="search" class="rounded"></div>
+      <div class="flex flex-row flex-wrap mt-2 -mb-2 text-sm underline">
+        <a id="catalog-link" href="/catalog/" target="_self" class="mr-4 text-black gone">Catalog</a>
+        <a id="mobile-catalog-link" href="/mobile/" target="_self" class="mr-4 text-black gone">Mobile catalog</a>
+        <a id="android-app-link" href="https://play.google.com/store/apps/details?id=zone.dos.app" target="_blank" class="mr-4 text-black gone">Android version</a>
+      </div>
     </div>
     <div class="content">
       {{ content | safe }}
@@ -75,6 +80,7 @@
         <a href="/donate/" target="_self">Donate</a>
         <h4>Catalog</h4>
         <a href="/catalog/" target="_self">Catalog</a><br/>
+        <a href="/mobile/" target="_self">Mobile catalog</a><br/>
         <a href="/studio/" target="_blank">Game Studio</a>
       </div>
       <div class="docs">

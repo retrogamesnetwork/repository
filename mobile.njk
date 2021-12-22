@@ -1,0 +1,26 @@
+---
+layout: base.njk
+---
+
+<h1 class="mx-10 my-20 uppercase font-mono text-lg font-bold">
+    Catalog of DOS Games with mobile controls
+</h1>
+
+<div class="catalog">
+	{% set letter = "" %}
+	{% for item in collections.games %}
+	    {% set mobile = false %}
+		{% for bundle in item.data.bundles %}
+			{% if bundle.mobile == true %}
+                {% set mobile = true %}
+            {% endif %}
+        {% endfor %}
+        {% if mobile == true %}
+            {% if letter != item.data.shortTitle[0] %}
+                {% set letter = item.data.shortTitle[0] %}
+                <div class="letter">{{letter}}</div>
+            {% endif %}
+            <a href="{{item.url}}" target="_self">{{item.data.shortTitle}}</a>
+        {% endif %}
+	{% endfor %}
+</div>
