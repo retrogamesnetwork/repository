@@ -33,6 +33,8 @@ const featuredMeta = [{
 }, {
   name: "Strategy | Simulation",
   entries: [
+    "/warcraft-orcs-humans/",
+    "/heroes-of-might-and-magic-ii/",
     "/oregon-trail-deluxe-1992/",
     "/sim-city-1989/",
     "/sim-city-2000-1993/",
