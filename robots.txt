@@ -1,5 +1,8 @@
+Sitemap: https://dos.zone/sitemap.xml
+
 User-agent: *
 Disallow: /en/
 Disallow: /rep/
 Disallow: /app/
+Disallow: /studio/
 Allow: /

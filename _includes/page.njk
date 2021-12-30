@@ -19,14 +19,14 @@ layout: base.njk
 
 <div class="bg-green-100 mx-2 my-4 rounded p-4">
 	<div class="">
-	  <h1 class="text-green-600 font-bold text-xl mb-2">{{shortTitle}} | Play | Download | Fork </h1>
+	  <h1 class="text-green-600 font-bold text-xl mb-2">Play <span class="font-bold text-purple-600">{{shortTitle}}</span> online in browser</h1>
 	  <div class="actions">
 
 		{% if android == true %}
-		<h3 class="mt-2">Android Version</h3>
+		<h2 class="mt-2">Android Version</h2>
 		{% for bundle in bundles %}
 			{% if bundle.type == "android" %}
-				<a class="button-green" href="{{bundle.url}}" target="_blank" type="button">
+				<a class="button-green" href="{{bundle.url}}" target="_blank">
 					Install {{bundle.title}}
 				</a>
 				<details id="datafiles" class="datafiles" >
@@ -34,7 +34,7 @@ layout: base.njk
 			{% endif %}
 			{% if bundle.type == "datafile" %}
 					<div class="bundle-row items-center">
-						<a class="flex flex-row items-center button-blue my-1 jsdos-bundle" href="/en/my/{{bundle.url}}" target="_blank" type="button">
+						<a class="flex flex-row items-center button-blue my-1 jsdos-bundle" href="/en/my/{{bundle.url}}" target="_blank">
                             <svg class="{{ "animate-bounce" if bundle.lang == "ENG" }} mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
@@ -51,22 +51,22 @@ layout: base.njk
 		{% endif %}
 
 		{% if js == true %}
-		<h3 class="mt-2">Browser Version</h3>
+		<h2 class="mt-2">Browser Version</h2>
 		{% for bundle in bundles %}
 			{% if bundle.type == "js" or bundle.type == "external-js" %}
 				<div class="bundle-row items-center">
 					{% if bundle.type == "js" %}
-					<a class="button-green my-1 jsdos-bundle" href="/rep/my/{{bundle.url}}" target="_self" type="button">
+					<a class="button-green my-1 jsdos-bundle font-bold" href="/rep/my/{{bundle.url}}" target="_self">
 						Play online
 					</a>
 					{% else %}
-					<a class="button-green my-1" href="{{bundle.url}}" target="_blank" type="button">
+					<a class="button-green my-1" href="{{bundle.url}}" target="_blank">
 						Play online
 					</a>
 					{% endif %}
 					<span class="tag-primary">{{bundle.lang}}</span>
 					{% if bundle.mobile == true %}
-					<span class="tag-success">Mobile</span>
+					<span class="tag-success font-bold">Mobile</span>
 					{% else %}
 					<span class="tag-warning">No Mobile Controls</span>
 					{% endif %}
@@ -74,7 +74,7 @@ layout: base.njk
 					<span class="tag">{{bundle.title}}</span>
 					{% endif %}
                     {% if bundle.type == "js" %}
-				    <a class="ml-2 self-center text-black cursor-pointer" href="/studio/?url={{bundle.url}}" target="_blank" type="button">
+				    <a class="ml-2 self-center text-black cursor-pointer" href="/studio/?url={{bundle.url}}" target="_blank">
                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                         </svg>
@@ -86,16 +86,16 @@ layout: base.njk
 		{% endif %}
 
 		{% if cloud == true %}
-		<h3 class="mt-2">Cloud Version</h3>
+		<h2 class="mt-2">Cloud Version</h2>
 		{% for bundle in bundles %}
 			{% if bundle.type == "cloud" %}
 				<div class="bundle-row items-center">
-					<a class="button-green my-1" href="/en/my/{{bundle.url}}" target="_blank" type="button">
+					<a class="button-green my-1" href="/en/my/{{bundle.url}}" target="_blank">
 						Play in Cloud
 					</a>
 					<span class="tag-primary">{{bundle.lang}}</span>
 					{% if bundle.mobile == true %}
-					<span class="tag-success">Mobile</span>
+					<span class="tag-success font-bold">Mobile</span>
 					{% else %}
 					<span class="tag-warning">No Mobile Controls</span>
 					{% endif %}
@@ -113,13 +113,13 @@ layout: base.njk
 
 <div class="bg-gray-100 mx-2 my-4 p-4">
 	<div class="flex flex-col">
-	  <h4 class="">Video & screenshots</h4>
+	  <h3 class="">Video & screenshots</h3>
 	  <div class="flex flex-row flex-nowrap overflow-x-auto my-4">
         {% if youtube %}
             <iframe width="560" height="315" class="mr-2 flex-shrink-0" src="https://www.youtube.com/embed/{{youtube}}" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   		{% endif %}
         {% for item in screenshots %}
-    		<img style="height: 315px" src="{{item}}" alt="screenshot" class="mr-2"/>
+    		<img style="height: 315px" src="{{item}}" alt="screenshot of {{shortTitle}}" class="mr-2"/>
   		{% endfor %}
       </div>
 	</div>
@@ -127,8 +127,12 @@ layout: base.njk
 
 <div class="callout">
 	<div class="">
-	  <h4 class="">Description</h4>
-	  <p>{{description | safe}}</p>
+        <p>{{text | safe}}</p>
+	    <p>
+          <span class="font-bold">{{shortTitle}}</span> is a famous and most played <span class="font-bold text-purple-600">DOS</span> game that now is available to play in <span class="font-bold">browser</span>. With virtual 
+          mobile controls you also can play in <span class="font-bold">{{shortTitle}} on mobile</span>. On DOS.Zone <span class="font-bold">{{shortTitle}}</span> available to play for free without
+          registration.
+        </p>
 	</div>
 </div>
 
