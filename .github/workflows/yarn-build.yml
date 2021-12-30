@@ -25,7 +25,10 @@ jobs:
     - name: Build
       run: |
         npm install -g yarn
-        cs sls && yarn && cd ..
+        cd sls && yarn && cd ..
+        mkdir sls/private
+        echo "export const NONCE=\"\";" > sls/private/sso.ts
+        echo "export const SECRET=\"\";" >> sls/private/sso.ts
         yarn
         yarn run eslint . --ext ts --max-warnings 0
         yarn run build

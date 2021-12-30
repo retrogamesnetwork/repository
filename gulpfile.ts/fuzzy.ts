@@ -21,7 +21,11 @@ export async function generateSearchIndex() {
         });
     }
 
-    fs.writeFileSync(join("_site", "resources", "index.json"), JSON.stringify(fuzzyIndex), "utf-8");
+    const indexDir = join("_site", "resources");
+    if (!fs.existsSync(indexDir)) {
+        fs.mkdirSync(indexDir, { recursive: true });
+    }
+    fs.writeFileSync(join(indexDir, "index.json"), JSON.stringify(fuzzyIndex), "utf-8");
 }
 
 function extractTitleAndSlug(lines: string[], page: string) {
