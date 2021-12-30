@@ -34,6 +34,14 @@ function extractTitleAndSlug(lines: string[], page: string) {
     for (const next of lines) {
         if (next.startsWith("shortTitle:")) {
             title = next.substring("shortTitle:".length).trim();
+
+            if (title.startsWith("\"")) {
+                title = title.substring(1);
+            }
+
+            if (title.endsWith("\"")) {
+                title = title.substring(0, title.length - 1);
+            }
         } else if (next.startsWith("permalink:")) {
             slug = next.substring("permalink:".length).trim();
         } else {
