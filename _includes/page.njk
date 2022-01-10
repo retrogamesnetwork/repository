@@ -19,7 +19,11 @@ layout: base.njk
 
 <div class="bg-green-100 mx-2 my-4 rounded p-4">
 	<div class="">
-	  <h1 class="text-green-600 font-bold text-xl mb-2">Play <span class="font-bold text-purple-600">{{shortTitle}}</span> online in browser</h1>
+	  <h1 class="text-green-600 font-bold text-xl mb-2">Play 
+          <span itemprop="name" class="font-bold text-purple-600">{{shortTitle}}</span> | 
+          <span itemprop="gamePlatform" class="font-bold">DOS</span> game online in browser
+          <meta itemprop="playMode" content="SinglePlayer">
+      </h1>
 	  <div class="actions">
 
 		{% if android == true %}
@@ -119,7 +123,11 @@ layout: base.njk
             <iframe width="560" height="315" class="mr-2 flex-shrink-0" src="https://www.youtube.com/embed/{{youtube}}" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   		{% endif %}
         {% for item in screenshots %}
-    		<img style="height: 315px" src="{{item}}" alt="screenshot of {{shortTitle}}" class="mr-2"/>
+            {% if loop.first %}
+    		    <img itemprop="image" style="height: 315px" src="{{item}}" alt="screenshot of {{shortTitle}}" class="mr-2"/>
+            {% else %}
+    		    <img itemprop="screenshot" style="height: 315px" src="{{item}}" alt="screenshot of {{shortTitle}}" class="mr-2"/>
+            {% endif %}
   		{% endfor %}
       </div>
 	</div>
@@ -128,7 +136,7 @@ layout: base.njk
 <div class="callout">
 	<div class="">
         <p>{{text | safe}}</p>
-	    <p>
+	    <p itemprop="description">
           <span class="font-bold">{{shortTitle}}</span> is a famous and most played <span class="font-bold text-purple-600">DOS</span> game that now is available to play in <span class="font-bold">browser</span>. With virtual 
           mobile controls you also can play in <span class="font-bold">{{shortTitle}} on mobile</span>. On DOS.Zone <span class="font-bold">{{shortTitle}}</span> available to play for free without
           registration.
