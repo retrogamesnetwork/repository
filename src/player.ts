@@ -33,7 +33,6 @@ export function initPlayer() {
 
     // eslint-disable-next-line new-cap
     const dos = Dos(root, {
-        donate: true,
         hardware: (window as any).hardware,
         clientId: async (gesture: boolean) => {
             let user = getLoggedUser();

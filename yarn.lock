@@ -2939,15 +2939,15 @@ emoji-regex@^8.0.0:
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz"
   integrity sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==
 
-emulators-ui@^0.71.5:
-  version "0.71.5"
-  resolved "https://registry.npmjs.org/emulators-ui/-/emulators-ui-0.71.5.tgz"
-  integrity sha512-+omid6p/IKKeJ+p66+GzDahwLU6FjeaN2RVvcpP1afhESj/SX1wF5oae7YlmKia5WWRUh/CC73RDiTJvPNDinQ==
+emulators-ui@^0.72.8:
+  version "0.72.8"
+  resolved "https://registry.yarnpkg.com/emulators-ui/-/emulators-ui-0.72.8.tgz#59c38ef96f8bd1119efc497b4f3e42444eab8b9b"
+  integrity sha512-80G9MeBJo9QssN/qcUbZwR3JWbti4yPtc3tF5ssjBabYCCHKUXPKAg0cfSUlcPZSbEaiicJQSfKY9s81krI3Kg==
 
-emulators@^0.71.0:
-  version "0.71.0"
-  resolved "https://registry.npmjs.org/emulators/-/emulators-0.71.0.tgz"
-  integrity sha512-0vy1huJEwxF43PB2ezWT35hDwDH9BExwiC0c8ovl4x4toNSXShcpIZQk/4V6+cbPH/lxuO4ENhW3H5FfyAspkw==
+emulators@^0.72.1:
+  version "0.72.1"
+  resolved "https://registry.yarnpkg.com/emulators/-/emulators-0.72.1.tgz#3e0b9554039e07891743ed0088f9b8bed92e4400"
+  integrity sha512-geJYBlyXiiffcc2xzuWwmLpd4QMd+On5I6XckoQa9Fjg9u9EAfqBZRYojWpi5LurarJ68wYjuNncPCgGWf6JuQ==
 
 encodeurl@~1.0.1, encodeurl@~1.0.2:
   version "1.0.2"
@@ -4586,10 +4586,12 @@ js-beautify@^1.6.12:
     glob "^7.1.3"
     nopt "^5.0.0"
 
-js-dos@^7.2.5:
-  version "7.2.5"
-  resolved "https://registry.yarnpkg.com/js-dos/-/js-dos-7.2.5.tgz#a4936959e76fc7345f78cc1c4b78a0c8ec0f4a9c"
-  integrity sha512-bcVv4vm3YDNA11POwWCjBwhgHdGVzz+erHriGSfb9MENkA1pRU0esTFj1Ab/79KwjdjicSz4yDOnGtUBIcgjog==
+js-dos@^7.2.6:
+  version "7.2.6"
+  resolved "https://registry.yarnpkg.com/js-dos/-/js-dos-7.2.6.tgz#d20966329953954304bbe6c0a5f79d3c11ca3d05"
+  integrity sha512-kv7A1S4mnUfxTsd8+5RZBPNCWcudCGQMP+nP7r1wtVVdBwDqto+JaBXN4ZUhe4L32jJxa56d4bqHLwBdY9YMCA==
+  dependencies:
+    nanoid "^3.1.30"
 
 js-stringify@^1.0.2:
   version "1.0.2"
