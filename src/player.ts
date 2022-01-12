@@ -1,6 +1,6 @@
 import { DosPlayerFactoryType } from "js-dos";
 import { getLoggedUser, login } from "./auth";
-import { cdnUrl } from "./cdn";
+import { cdnEndPoint, cdnUrl } from "./cdn";
 import { dhry2Bundle, Dhry2Decorator as addDhry2Decorator } from "./dhry2";
 
 declare const Dos: DosPlayerFactoryType;
@@ -59,14 +59,8 @@ export function initPlayer() {
     for (let i = 0; i < bundles.length; ++i) {
         const el = bundles[i] as HTMLAnchorElement;
         el.addEventListener("click", (ev) => {
-            const index = el.href.indexOf("/my/");
-            if (index === -1) {
-                return;
-            }
-
-            const url = decodeURIComponent(el.href.substr(index + "/my/".length));
-            const bundleUrl = cdnUrl(url);
-            if (!bundleUrl) {
+            const bundleUrl = extractBundleUrl(el);
+            if (bundleUrl === null) {
                 return;
             }
 
@@ -89,4 +83,24 @@ export function initPlayer() {
             capture: true,
         });
     }
+}
+
+function extractBundleUrl(el: HTMLElement): string | null {
+    if (el.dataset.bundle !== undefined) {
+        const bundleUrl = el.dataset.bundle;
+        return bundleUrl.startsWith("https://") ? bundleUrl : cdnEndPoint + decodeURIComponent(bundleUrl);
+    }
+
+    const href = (el as HTMLAnchorElement).href;
+    if (href === undefined) {
+        return null;
+    }
+
+    const index = href.indexOf("/my/");
+    if (index === -1) {
+        return null;
+    }
+
+    const url = decodeURIComponent(href.substring(index + "/my/".length));
+    return cdnUrl(url);
 }

@@ -60,9 +60,9 @@ layout: base.njk
 			{% if bundle.type == "js" or bundle.type == "external-js" %}
 				<div class="bundle-row items-center">
 					{% if bundle.type == "js" %}
-					<a class="button-green my-1 jsdos-bundle font-bold" href="/rep/my/{{bundle.url}}" target="_self">
+					<div class="button-green my-1 jsdos-bundle font-bold" data-bundle="{{bundle.url}}">
 						Play online
-					</a>
+					</div>
 					{% else %}
 					<a class="button-green my-1" href="{{bundle.url}}" target="_blank">
 						Play online
