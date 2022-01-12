@@ -101,5 +101,5 @@ function extractBundleUrl(el: HTMLElement): string | null {
     }
 
     const url = decodeURIComponent(href.substring(index + "/my/".length));
-    return cdnUrl(url);
+    return url.startsWith("https://") ? cdnUrl(url) : cdnEndPoint + url;
 }
