@@ -110,19 +110,32 @@ module.exports = function(config) {
   });
 
   config.addCollection("games", function(collectionApi) {
-    return collectionApi.getAll().sort((itemA, itemB) => {
-      const a = itemA.data.title;
-      const b = itemB.data.title;
-      
-      if (a > b) {
-        return 1;
-      }
-
-      if (a < b) {
-        return -1;
-      }
-
-      return 0;
-    });
+    return collectionApi.getFilteredByGlob("_pages/*.njk")
+        .sort((a, b) => a.data.shortTitle.localeCompare(b.data.shortTitle));
   });
+
+  config.addCollection("num", function(collectionApi) {
+      return extractSymbolsCollection("&μÜ0123456789", collectionApi);
+  });
+
+  
+  const letters = "qwertyuiopasdfghjklzxcvbnm";
+  for (let i = 0; i < letters.length; ++i) {
+    const letter = letters[i];
+    config.addCollection(letter, function(collectionApi) {
+        return extractSymbolsCollection(letter, collectionApi);
+    });
+  }
+}
+
+function extractSymbolsCollection(symbols, collectionApi) {
+    const hash = {};
+    
+    for (const symbol of symbols) {
+        hash[symbol] = true;
+    }
+
+    return collectionApi.getFilteredByGlob("_pages/*.njk").filter((v) => {
+        return hash[v.data.shortTitle[0].toLowerCase()];
+    }).sort((a, b) => a.data.shortTitle.localeCompare(b.data.shortTitle));
 }

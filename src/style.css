@@ -107,6 +107,12 @@
     @apply -mt-10 mb-10 ml-20 text-lg;
 }
 
+.catalog-symbol {
+	display: flex;
+	flex-direction: column;
+    @apply mt-4 mb-10 ml-20 text-lg;
+}
+
 .letter {
 	margin-top: 40px;
 	font-weight: bold;
