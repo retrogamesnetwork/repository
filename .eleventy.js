@@ -126,6 +126,46 @@ module.exports = function(config) {
         return extractSymbolsCollection(letter, collectionApi);
     });
   }
+
+
+  const rows = [
+      "...",
+      "0abcdef",
+      "ghijklm",
+      "nopqrst",
+      "uvwxyz",
+  ];
+  config.addShortcode("navigator", function() {
+    let contents = "";
+    contents += `<div class="flex flex-col items-center">`;
+    for (let row = 0; row < rows.length; ++row) {
+        contents += `<div class="flex flex-row flex-wrap">`;
+        if (row === 0) {
+            contents += `
+<div class="mx-1 my-2 rounded-xl border-2 border-purple-400 bg-purple-100 cursor-pointer">
+    <a class="font-bold text-lg text-purple-800 px-2 flex flex-row items-center" href="/mobile/">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+        Mobile
+    </a>
+</div>
+            `;
+        } else {
+            for (let i = 0; i < rows[row].length; ++i) {
+                const letter = rows[row][i];
+                contents += `    
+<div class="mx-1 my-2 rounded-xl border-2 border-blue-400 bg-blue-100 cursor-pointer">
+    <a class="font-bold font-mono text-lg text-blue-800 px-2 uppercase" href="/starts/with/${letter === "0" ? "number" : letter}/">${letter}</a>
+</div>
+                `;
+            }
+        }
+        contents += `</div>`;
+    }
+    contents += `</div>`;
+    return contents;
+  });
 }
 
 function extractSymbolsCollection(symbols, collectionApi) {

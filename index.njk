@@ -6,9 +6,15 @@ ogDescription: "Ultimate collection of free dos games to play online in browser.
 screenshots: ["https://cdn.dos.zone/original/2X/6/696b53945c63e21fbfb127602a9df0b4ae9c185f.jpeg"]
 ---
 
-<div class="flex flex-col items-center justify-center text-center">
-	<h1 class="text-2xl sm:text-4xl my-8 mx-3">{{description}}</h1>
-	<p class="text-1xl sm:text-2xl mb-4"><span class="text-green-600 font-bold">{{collections.all.length}}</span> games are ready to <span class="font-bold text-purple-600">play in browser</span></p>
+<div class="flex flex-row flex-wrap justify-evenly">
+    <div class="flex flex-col items-center justify-center text-center">
+    	<h1 class="text-2xl sm:text-4xl my-8 mx-3">{{description}}</h1>
+    	<p class="text-1xl sm:text-2xl mb-4"><span class="text-green-600 font-bold">{{collections.all.length}}</span> games are ready to <span class="font-bold text-purple-600">play in browser</span></p>
+    </div>
+
+    <div class="my-8">
+        {% navigator %}
+    </div>
 </div>
 
 {% for collection in collections.featured %}
