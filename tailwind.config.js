@@ -2,6 +2,7 @@ module.exports = {
     purge: [
         "src/**/*.ts",
         "./**/*.njk",
+        "./.eleventy.js",
     ],
     darkMode: false,
     theme: {
