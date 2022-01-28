@@ -194,6 +194,10 @@ export function login(): Promise<User | null> {
 }
 
 export function initAuth() {
+    if ((window.location.search || "").indexOf("datafiles=true") >= 0) {
+        return;
+    }
+
     const domContainer = document.querySelector("#auth");
     if (domContainer !== null) {
         render(html`<${Auth} />`, domContainer);

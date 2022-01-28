@@ -38,7 +38,11 @@ layout: base.njk
 			{% endif %}
 			{% if bundle.type == "datafile" %}
 					<div class="bundle-row items-center">
-						<a class="flex flex-row items-center button-blue my-1 jsdos-bundle" href="/en/my/{{bundle.url}}" target="_blank">
+			            {% if bundle.url.startsWith("https%3A%2F%2Fdoszone-uploads") or bundle.url == "custom/dos/doom.jsdos" %}
+						<a class="flex flex-row items-center button-blue my-1 jsdos-bundle" href="/en/my/{{bundle.url}}" rel="nofollow" target="_blank">
+                        {% else %}
+						<a class="flex flex-row items-center button-blue my-1 jsdos-bundle" href="https://cdn.dos.zone/{{bundle.url}}" rel="nofollow" target="_blank">
+                        {% endif %}
                             <svg class="{{ "animate-bounce" if bundle.lang == "ENG" }} mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
