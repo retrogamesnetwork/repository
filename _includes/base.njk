@@ -27,8 +27,8 @@
     <link rel="preconnect" href="{{ metadata.rootUrl }}">
     <link rel="me" href="https://twitter.com/intent/user?screen_name=caiiiycuk" type="text/html">
     <link rel="me" href="mailto:caiiiycuk@gmail.com">
-    <link rel="stylesheet" href="/resources/js-dos/js-dos.css">
     <link rel="stylesheet" href="/resources/index.css">
+    <link rel="stylesheet" href="/resources/js-dos/js-dos.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5L33M3K6MQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -50,7 +50,11 @@
         });
     </script>
   </head>
-  <body itemscope itemtype="http://schema.org/VideoGame">
+  {% if bodyClass %}
+  <body class="{{ bodyClass }}" itemscope itemtype="http://schema.org/VideoGame">
+  {% else %}
+  <body class="base" itemscope itemtype="http://schema.org/VideoGame">
+  {% endif %}
     <div class="flex flex-col justify-center">
       <nav class="flex flex-row h-12 shadow px-4">
         <a href="/" target="_self" class="flex-grow-0 logo bg-contain bg-no-repeat bg-center h-full block"></a>
@@ -77,8 +81,8 @@
     <div class="search-line">
       <div id="search" class="rounded"></div>
       <div class="flex flex-row flex-wrap mt-2 -mb-2 text-sm underline">
-        <a id="mobile-catalog-link" href="/mobile/" target="_self" class="mr-4 text-black gone">Mobile catalog</a>
-        <a id="android-app-link" href="https://play.google.com/store/apps/details?id=zone.dos.app" target="_blank" class="mr-4 text-black gone">Android version</a>
+        <a id="mobile-catalog-link" href="/mobile/" target="_self" class="mr-4 text-black cursor-pointer gone">Mobile catalog</a>
+        <a id="android-app-link" href="https://play.google.com/store/apps/details?id=zone.dos.app" target="_blank" class="mr-4 text-black cursor-pointer gone">Android version</a>
       </div>
     </div>
     <div class="content">

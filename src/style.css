@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    a {
-      @apply text-blue-400;
-    }
+.base a {
+    @apply text-blue-400;
+}
+
+a#android-app-link,
+a#mobile-catalog-link {
+    @apply text-black !important;
+
 }
 
 * {
@@ -14,7 +18,7 @@
     touch-action: pan-x pan-y;
 }
 
-.disable-selection * {
+.disable-selection div {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -26,6 +30,7 @@
     -ms-content-zooming: none;
     touch-action: none;
 }
+    
 
 .button-green {
     @apply bg-gradient-to-br from-green-400 to-green-600 text-white px-4 py-1 rounded cursor-pointer;

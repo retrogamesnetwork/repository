@@ -10,6 +10,7 @@ export function initPlayer() {
     const datafiles = (window.location.search || "").indexOf("datafiles=true") >= 0;
     const frame = document.getElementsByClassName("jsdos-frame")[0] as HTMLDivElement;
     const root = document.getElementsByClassName("jsdos-content")[0] as HTMLDivElement;
+    const withExperimentalApi = (window.location.href || "").indexOf("/multiplayer/") >= 0;
 
     if (!frame || !root || datafiles) {
         return;
@@ -22,6 +23,10 @@ export function initPlayer() {
 
     const preventListener = (e: Event) => {
         let target: HTMLElement | null = e.target as HTMLElement;
+        if (target instanceof HTMLInputElement) {
+            return;
+        }
+
         while (target !== null) {
             if (target.classList.contains("not-prevent-key-events")) {
                 return;
@@ -34,6 +39,7 @@ export function initPlayer() {
     // eslint-disable-next-line new-cap
     const dos = Dos(root, {
         hardware: (window as any).hardware,
+        withExperimentalApi,
         clientId: async (gesture: boolean) => {
             let user = getLoggedUser();
             if (user === null && gesture) {
