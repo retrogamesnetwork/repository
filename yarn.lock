@@ -4639,10 +4639,10 @@ js-beautify@^1.6.12:
     glob "^7.1.3"
     nopt "^5.0.0"
 
-js-dos@^7.3.3:
-  version "7.3.3"
-  resolved "https://registry.yarnpkg.com/js-dos/-/js-dos-7.3.3.tgz#9bc5fa8de649f41e89f4e2666ce5854769bece06"
-  integrity sha512-EGC6V3+pCyN2y84YlyloyE8c1Q3Ql/iKgvoNUvdGQiPw2kFoVJT+lu0fOJ0Ju+sP8Pk9e+PiqjXQD7SgKou++w==
+js-dos@^7.3.4:
+  version "7.3.4"
+  resolved "https://registry.yarnpkg.com/js-dos/-/js-dos-7.3.4.tgz#b52d5485f1bc5599e475f01ad6c5d3111f200870"
+  integrity sha512-QzmtqCMtY9IvmpbNFdI3Jsf1HoplO4KQCqjxDVCZdx/z7OgAih1VPTeKTLykRVAJYiWHiNTNzGTRSKb2udj9YA==
   dependencies:
     nanoid "^3.1.30"
 

@@ -28,7 +28,7 @@ bodyClass: page
 	  <div class="actions">
 
 		{% if android == true %}
-		<h2 class="mt-2">Android Version</h2>
+		<h2 class="mt-2 mb-1 font-bold">{{shortTitle}} Android Version</h2>
 		{% for bundle in bundles %}
 			{% if bundle.type == "android" %}
 				<a class="button-green" href="{{bundle.url}}" target="_blank">
@@ -60,7 +60,7 @@ bodyClass: page
 		{% endif %}
 
 		{% if js == true %}
-		<h2 class="mt-2">Browser Version</h2>
+		<h2 class="mt-2 font-bold">{{shortTitle}} Browser Version</h2>
 		{% for bundle in bundles %}
 			{% if bundle.type == "js" or bundle.type == "external-js" %}
 				<div class="bundle-row items-center">
@@ -93,9 +93,16 @@ bodyClass: page
 			{% endif %}
 		{% endfor %}
 		{% endif %}
+  
+		{% if multiplayer == true %}
+		<h2 class="mt-2 mb-1 font-bold">{{shortTitle}} Multiplayer</h2>
+        <a class="button-blue my-1" href="/multiplayer{{permalink}}" target="_self">
+            Open {{shortTitle}} multiplayer
+        </a>
+		{% endif %}
 
 		{% if cloud == true %}
-		<h2 class="mt-2">Cloud Version</h2>
+		<h2 class="mt-2 font-bold">{{shortTitle}} Cloud Version</h2>
 		{% for bundle in bundles %}
 			{% if bundle.type == "cloud" %}
 				<div class="bundle-row items-center">
@@ -120,9 +127,15 @@ bodyClass: page
 	</div>
 </div>
 
+{% if content %}
+<div class="bg-purple-100 mx-2 my-4 p-4">
+    {{content | safe}}
+</div>
+{% endif %}
+
 <div class="bg-gray-100 mx-2 my-4 p-4">
 	<div class="flex flex-col">
-	  <h3 class="">Video & screenshots</h3>
+	  <h3 class="">{{shortTitle}}: Video and Screenshots</h3>
 	  <div class="flex flex-row flex-nowrap overflow-x-auto my-4">
         {% if youtube %}
             <iframe width="560" height="315" class="mr-2 flex-shrink-0" src="https://www.youtube.com/embed/{{youtube}}" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -140,7 +153,6 @@ bodyClass: page
 
 <div class="callout">
 	<div class="">
-        <p>{{text | safe}}</p>
 	    <p itemprop="description">
           <span class="font-bold">{{shortTitle}}</span> is a famous and most played <span class="font-bold text-purple-600">DOS</span> game that now is available to play in <span class="font-bold">browser</span>. With virtual 
           mobile controls you also can play in <span class="font-bold">{{shortTitle}} on mobile</span>. On DOS.Zone <span class="font-bold">{{shortTitle}}</span> available to play for free without

@@ -3,7 +3,20 @@ layout: base.njk
 bodyClass: page
 ---
 
-<div class="bg-green-100 mx-2 my-4 rounded p-4">
+<div class="flex flex-row flex-wrap">
+
+<div class="bg-green-100 mx-2 my-4 rounded p-4 flex-grow">
+    {% if catalog %}
+	<div class="">
+	  <h1 class="text-green-600 font-bold text-xl mb-2">Catalog of  
+          <span itemprop="name" class="font-bold text-purple-600">Multiplayer</span>
+          <span itemprop="gamePlatform" class="font-bold text-purple-600">DOS</span> games in browser
+          <meta itemprop="playMode" content="MultiPlayer">
+      </h1>
+      
+      {{ content | safe }}
+    </div>
+    {% else %}
 	<div class="">
 	  <h1 class="text-green-600 font-bold text-xl mb-2">Play 
           <span itemprop="name" class="font-bold text-purple-600">{{shortTitle}} Multiplayer</span> | 
@@ -12,7 +25,7 @@ bodyClass: page
       </h1>
 	  <div class="actions">
 
-		<h2 class="mt-2 font-bold">Multiplayer</h2>
+		<h2 class="my-2 font-bold">Multiplayer</h2>
 		{% for bundle in bundles %}
             <div class="bundle-row items-center">
                 <div class="button-green my-1 jsdos-bundle font-bold" data-bundle="{{bundle.url}}">
@@ -38,9 +51,15 @@ bodyClass: page
 		{% endfor %}
 	  </div>
 	</div>
+
+    <h2 class="my-2 font-bold">Singleplayer</h2>
+    <a class="button-blue my-1" href="{{permalink.slice('/multiplayer'.length)}}" target="_self">
+        Open {{shortTitle}} singleplayer
+    </a>
+    {% endif %}
 </div>
 
-<div class="bg-purple-100 mx-2 my-4 p-4">
+<div class="bg-purple-100 mx-2 my-4 p-4 flex-grow">
     <div class="flex flex-col">
     <h3 class="font-bold">Instructions</h3>
         <p>To start the game please use <span class="text-purple-600 font-bold">Play</span> button above.</p>
@@ -62,7 +81,7 @@ bodyClass: page
 
         <div class="flex flex-row mt-8 items-center">
             <p class="font-bold">If you will <span class="font-bold text-purple-600">host</span> the game, you need to:</p>
-            <a href="#" class="cursor-pointer ml-1 text-purple-600" title="Host tutorial">
+            <a href="https://youtu.be/XffB8D7IkDk" target="_blank" class="cursor-pointer ml-1 text-purple-600" title="Host tutorial">
 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
 </svg>
@@ -77,7 +96,7 @@ bodyClass: page
 
         <div class="flex flex-row mt-8 items-center">
             <p class="font-bold">If you will connect to the existing game:</p>
-            <a href="#" class="cursor-pointer ml-1 text-purple-600" title="Client tutorial">
+            <a href="https://youtu.be/XffB8D7IkDk?t=62" target="_blank" class="cursor-pointer ml-1 text-purple-600" title="Client tutorial">
 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
 </svg>
@@ -87,7 +106,16 @@ bodyClass: page
         <p>2. Press the <span class="font-bold text-purple-600">Connect</span> button near IPX label to connect to the IPX server.</p>
 
         <p class="mt-8">After connection established you can <span class="font-bold text-purple-600">press the Enter key</span> to start the game.</p>
+
+        <p class="font-bold mt-8 text-lg">Matchmaking</p>
+        <p>You can find multiplayer opponents in following 
+            <a class="font-bold underline text-purple-600" href="https://discord.com/invite/hMVYEbG" target="_blank">Discord</a> 
+            or 
+            <a class="font-bold underline text-purple-600" href="https://t.me/doszonechat" target="_blank">Telegram</a>
+            channels</p>
     </div>
+</div>
+
 </div>
 
 <div class="bg-gray-100 mx-2 my-4 p-4">
@@ -108,14 +136,17 @@ bodyClass: page
 	</div>
 </div>
 
+{% if catalog %}
+{% else %}
 <div class="callout">
 	<div class="">
         <p>{{text | safe}}</p>
 	    <p itemprop="description">
           <span class="font-bold">{{shortTitle}}</span> is a famous and most played <span class="font-bold text-purple-600">DOS</span> game that supports <span class="font-bold">Multiplayer</span> games.
-          Play DOOM with your friends in <span class="font-bold">Browser</span> for free without registration{{shortTitle}} on mobile.
+          Play DOOM with your friends in <span class="font-bold">Browser</span> for free without registration {{shortTitle}} on mobile.
         </p>
 	</div>
 </div>
+{% endif %}
 
 <a class="edit-page" href="https://github.com/js-dos/repository/issues/new?title={{permalink}}" target="_blank">Edit the page</a>

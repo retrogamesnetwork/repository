@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.base a {
+.base a, .footer a {
     @apply text-blue-400;
 }
 

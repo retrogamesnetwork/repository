@@ -1,0 +1,26 @@
+---
+layout: multiplayer.njk
+ogDescription: Multiplayer games available on DOS.Zone. Play legendary dos games like 
+  DOOM, WarCraft,  Command & Conquer with friends. No registration are required, play
+  in browser for free.
+permalink: /multiplayer/
+screenshots:
+- https://cdn.dos.zone/original/2X/2/292ca5b51baeb511a427017e3c977e78d6a369e1.png
+- https://cdn.dos.zone/original/2X/b/bf9f8bf554c9f109d8b27c0ee995c66e4b17512b.gif
+- https://cdn.dos.zone/original/2X/a/ae3116154ac2b9725465dc1fe59fa39507886432.png
+shortTitle: Multiplayer Games
+title: Multiplayer Games | 🕹️Play DOOM, Warcraft, C&C Multiplayer Online | DOS games in browser
+youtube: XffB8D7IkDk
+catalog: true
+---
+
+
+<div>
+    {% for item in collections.games %}
+        {% if item.data.multiplayer %}
+        <a class="my-2 ml-4 underline uppercase cursor-pointer text-lg" href="/multiplayer{{item.data.permalink}}" target="_self">
+            {{item.data.shortTitle}}
+        </a>
+        {% endif %}
+    {% endfor %}
+</div>
