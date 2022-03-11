@@ -4,6 +4,7 @@ import { cdnEndPoint, cdnUrl } from "./cdn";
 import { dhry2Bundle, Dhry2Decorator as addDhry2Decorator } from "./dhry2";
 
 declare const Dos: DosPlayerFactoryType;
+declare const emulators: any;
 
 export function initPlayer() {
     const body = document.body;
@@ -14,6 +15,19 @@ export function initPlayer() {
 
     if (!frame || !root || datafiles) {
         return;
+    }
+
+    const emulatorFunction = (window.location.href || "").indexOf("direct=1") > 0 ?
+        "dosboxDirect" : "dosboxWorker";
+
+    const noWebGL = (window.location.href || "").indexOf("nowebgl=1") > 0;
+
+    if ((window.location.href || "").indexOf("shared=1") > 0) {
+        emulators.wdosboxJs = "wdosbox.shared.js";
+    }
+
+    if ((window.location.href || "").indexOf("noshared=1") > 0) {
+        emulators.wdosboxJs = "wdosbox.js";
     }
 
     const bundles = document.getElementsByClassName("jsdos-bundle");
@@ -39,6 +53,8 @@ export function initPlayer() {
     // eslint-disable-next-line new-cap
     const dos = Dos(root, {
         hardware: (window as any).hardware,
+        noWebGL,
+        emulatorFunction,
         withExperimentalApi,
         clientId: async (gesture: boolean) => {
             let user = getLoggedUser();
