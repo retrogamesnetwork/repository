@@ -22,7 +22,7 @@ async function css() {
         .pipe(dest("_site/resources"));
 }
 
-function compileJs() {
+function indexJs() {
     return browserify({
         debug: true,
         basedir: ".",
@@ -45,7 +45,30 @@ function compileJs() {
         .pipe(dest("_site/resources"));
 }
 
-exports.default = parallel(compileJs, css, generateSearchIndex);
-exports.js = compileJs;
+function playerJs() {
+    return browserify({
+        debug: true,
+        basedir: ".",
+        entries: ["src/player-frame.ts"],
+    })
+        .plugin(tsify, {
+            "target": "esnext",
+        })
+        .transform("babelify", {
+            presets: [["@babel/preset-env", { "useBuiltIns": "usage", "corejs": 3 }]],
+            extensions: [".ts"],
+        })
+        .bundle()
+        .pipe(source("player.js"))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(terser())
+        .pipe(sourcemaps.write("./"))
+        .pipe(size({ showFiles: true, showTotal: false }))
+        .pipe(dest("_site/resources"));
+}
+
+exports.default = parallel(indexJs, playerJs, css, generateSearchIndex);
+exports.js = parallel(indexJs, playerJs);
 exports.css = css;
 exports.fuzzy = generateSearchIndex;

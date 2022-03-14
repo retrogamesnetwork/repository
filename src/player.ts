@@ -1,33 +1,31 @@
-import { DosPlayerFactoryType } from "js-dos";
-import { getLoggedUser, login } from "./auth";
 import { cdnEndPoint, cdnUrl } from "./cdn";
-import { dhry2Bundle, Dhry2Decorator as addDhry2Decorator } from "./dhry2";
-
-declare const Dos: DosPlayerFactoryType;
-declare const emulators: any;
+import { getLoggedUser, login } from "./auth";
+import { hasDataFiles, hasExperimentalApi } from "./location-options";
 
 export function initPlayer() {
     const body = document.body;
-    const datafiles = (window.location.search || "").indexOf("datafiles=true") >= 0;
+    const datafiles = hasDataFiles();
     const frame = document.getElementsByClassName("jsdos-frame")[0] as HTMLDivElement;
-    const root = document.getElementsByClassName("jsdos-content")[0] as HTMLDivElement;
-    const withExperimentalApi = (window.location.href || "").indexOf("/multiplayer/") >= 0;
+    const iframe = document.getElementsByClassName("jsdos-iframe")[0] as HTMLIFrameElement;
 
-    if (!frame || !root || datafiles) {
+    if (!frame || !iframe || datafiles) {
         return;
     }
 
-    const emulatorFunction = (window.location.href || "").indexOf("direct=1") > 0 ?
-        "dosboxDirect" : "dosboxWorker";
+    (window as any).serverMessage = (message: string) => {
+        iframe.contentWindow?.postMessage({
+            message: "dz-server-message",
+            payload: message,
+        });
+    };
 
-    const noWebGL = (window.location.href || "").indexOf("nowebgl=1") > 0;
-
-    if ((window.location.href || "").indexOf("shared=1") > 0) {
-        emulators.wdosboxJs = "wdosbox.shared.js";
-    }
-
-    if ((window.location.href || "").indexOf("noshared=1") > 0) {
-        emulators.wdosboxJs = "wdosbox.js";
+    const el = frame as any;
+    if (!el.requestFullscreen &&
+            !el.webkitRequestFullscreen &&
+            !el.mozRequestFullScreen &&
+            !el.msRequestFullscreen &&
+            !el.webkitEnterFullscreen) {
+        el.classList.add("jsdos-frame-fullscreen");
     }
 
     const bundles = document.getElementsByClassName("jsdos-bundle");
@@ -35,50 +33,44 @@ export function initPlayer() {
         return;
     }
 
-    const preventListener = (e: Event) => {
-        let target: HTMLElement | null = e.target as HTMLElement;
-        if (target instanceof HTMLInputElement) {
+    const clientIdListener = async (e: any) => {
+        if (e.data.message !== "dz-client-id") {
+            return;
+        }
+        const gesture = e.data.gesture;
+
+        let user = getLoggedUser();
+        if (user === null && gesture) {
+            user = await login();
+        }
+
+        if (user === null) {
+            iframe.contentWindow?.postMessage({
+                message: "dz-client-id-response",
+            }, "*");
+        } else {
+            iframe.contentWindow?.postMessage({
+                message: "dz-client-id-response",
+                namespace: user.namespace || "doszone",
+                id: user.email,
+            }, "*");
+        }
+    };
+
+    const exitListener = (e: any) => {
+        if (e.data.message !== "dz-player-exit") {
             return;
         }
 
-        while (target !== null) {
-            if (target.classList.contains("not-prevent-key-events")) {
-                return;
-            }
-            target = target.parentElement;
-        }
-        e.preventDefault();
+        window.removeEventListener("message", clientIdListener);
+        window.removeEventListener("message", exitListener);
+
+        body.classList.remove("disable-selection");
+        frame.classList.add("gone");
     };
 
-    // eslint-disable-next-line new-cap
-    const dos = Dos(root, {
-        hardware: (window as any).hardware,
-        noWebGL,
-        emulatorFunction,
-        withExperimentalApi,
-        clientId: async (gesture: boolean) => {
-            let user = getLoggedUser();
-            if (user === null && gesture) {
-                user = await login();
-            }
-
-            if (user === null) {
-                return null;
-            }
-
-            return {
-                namespace: user.namespace || "doszone",
-                id: user.email,
-            };
-        },
-        onExit: () => {
-            body.classList.remove("disable-selection");
-            frame.classList.add("gone");
-        },
-    });
-
     for (let i = 0; i < bundles.length; ++i) {
-        const el = bundles[i] as HTMLAnchorElement;
+        const el = bundles[i] as HTMLElement;
         el.addEventListener("click", (ev) => {
             const bundleUrl = extractBundleUrl(el);
             if (bundleUrl === null) {
@@ -88,18 +80,18 @@ export function initPlayer() {
             body.classList.add("disable-selection");
             frame.classList.remove("gone");
 
-            setTimeout(async () => {
-                const isDhry2Bundle = bundleUrl.indexOf(dhry2Bundle) >= 0;
-                const ci = await dos.run(bundleUrl);
-                if (isDhry2Bundle) {
-                    addDhry2Decorator(dos, ci);
-                }
-            }, 100);
+            iframe.src = "/player/?bundleUrl=" + encodeURIComponent(bundleUrl) +
+                ((window.location.search || "").length > 0 ?
+                    "&" + window.location.search.substring(1) : "") +
+                 (hasExperimentalApi() ? "&experimental=1" : "");
 
 
-            window.addEventListener("keydown", preventListener, { capture: true });
             ev.stopPropagation();
             ev.preventDefault();
+
+
+            window.addEventListener("message", clientIdListener);
+            window.addEventListener("message", exitListener);
         }, {
             capture: true,
         });

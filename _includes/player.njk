@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="robots" content="noindex">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+        <meta name="description" content="DOS.Zone player based on js-dos">
+        <meta property="og:locale" content="en">
+        <meta property="og:site_name" content="DOS Zone">
+        <meta property="og:title" content="DOS.Zone player">
+        <meta property="og:url" content="{{ metadata.rootUrl}}{{ page.url }}">
+        <meta property="og:type" content="website">
+        <meta property="og:description" content="DOS.Zone player based on js-dos">
+        <meta name="twitter:title" content="DOS.Zone player">
+        <meta name="twitter:description" content="DOS.Zone player based on js-dos">
+        <meta name="twitter:site" content="@{{ metadata.social }}">
+        <meta name="twitter:dnt" content="on">
+        <meta name="google-signin-client_id" content="673757892813-i4bas1tjuac7t1crf0v6olm4o2e99ct8.apps.googleusercontent.com">
+        <title>DOS.Zone Player</title>
+        <link rel="icon" type="image/png" href="{{ metadata.favicon }}">
+        <link rel="dns-prefetch" href="{{ metadata.rootUrl }}">
+        <link rel="preconnect" href="{{ metadata.rootUrl }}">
+        <link rel="me" href="https://twitter.com/intent/user?screen_name=caiiiycuk" type="text/html">
+        <link rel="me" href="mailto:caiiiycuk@gmail.com">
+        <style type="text/css">
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+            }
+            .gone {
+                display: none !important;
+            }
+            .jsdos-content {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+            .jsdos-dhry2-test {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 49;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                background-color: rgba(0, 0, 0, 0.7);
+                font-family: monospace;
+                font-size: 1.5 .em;
+                color: white;
+            }
+            .jsdos-dhry2-test-container {
+                display: flex;
+                flex-direction: column;
+            }
+            .jsdos-dhry2-span-1,
+            .jsdos-dhry2-span-3,
+            .jsdos-dhry2-span-6 {
+                color: #15B371;
+            }
+            .jsdos-dhry2-span-8 {
+                color: #FFC940;
+            }
+        </style>
+        <link rel="stylesheet" href="/resources/js-dos/js-dos.css">
+    </head>
+    <body>
+        <div class="jsdos-content"></div>
+        <div class="jsdos-dhry2-test gone">
+            <h1>Dhrystone Benchmark</h1>
+            <div class="jsdos-dhry2-test-container">
+                <p>
+                    <span class="jsdos-dhry2-span-0"></span>
+                    <span class="jsdos-dhry2-span-1"></span>
+                </p>
+                <p>
+                    <span class="jsdos-dhry2-span-2"></span>
+                    <span class="jsdos-dhry2-span-3"></span>
+                    <span class="jsdos-dhry2-span-4"></span>
+                </p>
+                <p>
+                    <span class="jsdos-dhry2-span-5"></span>
+                    <span class="jsdos-dhry2-span-6"></span>
+                </p>
+            </div>
+            <p class="jsdos-dhry2-test-result">
+                <span class="jsdos-dhry2-span-7"></span>
+                <span class="jsdos-dhry2-span-8"></span>
+            </p>
+        </div>
+        <script src="/resources/js-dos/js-dos.js"></script>
+        <script>
+            emulators.pathPrefix = "/resources/js-dos/";
+        </script>
+        <script src="/resources/player.js" async></script>
+    </body>
+</html>
