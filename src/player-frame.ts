@@ -37,7 +37,7 @@ export function initPlayer() {
         const legacyIndex = href.indexOf(legacyBundleUrlPattern);
         if (legacyIndex >= 0) {
             anonymous = true;
-            bundleUrl = href.substring(legacyIndex + legacyBundleUrlPattern.length).split("?")[0];
+            bundleUrl = decodeURIComponent(href.substring(legacyIndex + legacyBundleUrlPattern.length).split("?")[0]);
             console.warn("found legacy bundle url", bundleUrl);
         }
     }
