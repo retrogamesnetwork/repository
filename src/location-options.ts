@@ -16,7 +16,8 @@ export function hasNoWebGL() {
 }
 
 export function hasShared() {
-    return (window.location.search || "").indexOf("shared=1") >= 0;
+    return (window.location.search || "").indexOf("shared=1") >= 0 ||
+        (window.location.host || "").startsWith("shd.");
 }
 
 export function hasNoShared() {

@@ -22,6 +22,7 @@
     <meta name="twitter:dnt" content="on">
     <meta name="google-signin-client_id" content="673757892813-i4bas1tjuac7t1crf0v6olm4o2e99ct8.apps.googleusercontent.com">
     <title>{{title}}</title>
+    <link rel="canonical" href="{{ metadata.rootUrl}}{{ page.url }}" />
     <link rel="icon" type="image/png" href="{{ metadata.favicon }}">
     <link rel="dns-prefetch" href="{{ metadata.rootUrl }}">
     <link rel="preconnect" href="{{ metadata.rootUrl }}">
@@ -123,7 +124,10 @@
       </div>
     </div>
     <div class="jsdos-frame gone">
-        <iframe class="jsdos-iframe" name="jsdos-frame"></iframe>
+        <iframe 
+            class="jsdos-iframe" 
+            name="jsdos-frame">
+        </iframe>
     </div>
     <div class="jsdos-login-frame gone bg-gray-800 bg-opacity-80">
       <div class="jsdos-login rounded bg-white px-8 py-4">
