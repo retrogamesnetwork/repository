@@ -213,19 +213,27 @@ a#mobile-catalog-link {
   }
 }
 
+.jsdos-code,
 .jsdos-frame {
     position: fixed;
     left: 20px;
     top: 20px;
     right: 25px;
-    bottom: 25px;
 
-	background: #00A8A8;
+    background: black;
   	box-shadow: 15px 15px rgba(0, 0, 0, 0.5);
     padding: 5px;
     border: 5px double white;
 
 	z-index: 999;
+}
+
+.jsdos-frame {
+    bottom: 25px;
+}
+
+.jsdos-code {
+    padding: 5px 10px;
 }
 
 @media screen and (max-width: 960px) {

@@ -1,6 +1,8 @@
 import { initSearch } from "./search";
 import { initPlayer } from "./player";
 import { initAuth } from "./auth";
+import { initCode } from "./code";
+import { hasDataFiles } from "./location-options";
 
 function init() {
     initPlatform();
@@ -8,6 +10,7 @@ function init() {
     initSearch();
     initPlayer();
     initAuth();
+    initCode();
 }
 
 function initPlatform() {
@@ -23,7 +26,7 @@ function initPlatform() {
 }
 
 function initDatafilesViewIfNeeded() {
-    if ((window.location.search || "").indexOf("datafiles=true") >= 0) {
+    if (hasDataFiles()) {
         const el = document.getElementById("datafiles") as HTMLDetailsElement | null;
         if (el) {
             el.open = true;

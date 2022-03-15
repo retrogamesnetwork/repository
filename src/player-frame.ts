@@ -3,6 +3,7 @@ import { dhry2Bundle, Dhry2Decorator as addDhry2Decorator } from "./dhry2";
 import {
     hasDirect, hasExperimentalApi,
     hasNoShared, hasNoWebGL, hasShared,
+    hasAnonymous,
 } from "./location-options";
 
 declare const Dos: DosPlayerFactoryType;
@@ -18,6 +19,7 @@ export function initPlayer() {
     const withExperimentalApi = hasExperimentalApi();
     const emulatorFunction = hasDirect() ? "dosboxDirect" : "dosboxWorker";
     const noWebGL = hasNoWebGL();
+    const anonymous = hasAnonymous();
 
     if (hasShared()) {
         emulators.wdosboxJs = "wdosbox.shared.js";
@@ -64,6 +66,11 @@ export function initPlayer() {
         withExperimentalApi,
         clientId: (gesture: boolean) => {
             return new Promise<ClientId | null>((resolve) => {
+                if (anonymous) {
+                    resolve(null);
+                    return;
+                }
+
                 const onId = (e: any) => {
                     if (e.data.message !== "dz-client-id-response") {
                         return;
