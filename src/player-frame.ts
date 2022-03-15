@@ -8,6 +8,7 @@ import {
 
 declare const Dos: DosPlayerFactoryType;
 declare const emulators: any;
+const legacyBundleUrlPattern = "dos.zone/en/player/";
 
 export function initPlayer() {
     const root = document.getElementsByClassName("jsdos-content")[0] as HTMLDivElement;
@@ -19,7 +20,7 @@ export function initPlayer() {
     const withExperimentalApi = hasExperimentalApi();
     const emulatorFunction = hasDirect() ? "dosboxDirect" : "dosboxWorker";
     const noWebGL = hasNoWebGL();
-    const anonymous = hasAnonymous();
+    let anonymous = hasAnonymous();
 
     if (hasShared()) {
         emulators.wdosboxJs = "wdosbox.shared.js";
@@ -29,9 +30,20 @@ export function initPlayer() {
         emulators.wdosboxJs = "wdosbox.js";
     }
 
-    const bundleUrl = new URLSearchParams(window.location.search).get("bundleUrl");
+    let bundleUrl = new URLSearchParams(window.location.search).get("bundleUrl");
     if (bundleUrl === null) {
-        console.error("bundle url is not set!", window.location.search);
+        console.warn("bundle url is not set in", window.location.search);
+        const href = window.location.href || "";
+        const legacyIndex = href.indexOf(legacyBundleUrlPattern);
+        if (legacyIndex >= 0) {
+            anonymous = true;
+            bundleUrl = href.substring(legacyIndex + legacyBundleUrlPattern.length).split("?")[0];
+            console.warn("found legacy bundle url", bundleUrl);
+        }
+    }
+
+    if (bundleUrl === null) {
+        console.error("bundle url is not specified, exiting...");
         return;
     }
 
@@ -101,8 +113,8 @@ export function initPlayer() {
     window.addEventListener("keydown", preventListener, { capture: true });
 
     setTimeout(async () => {
-        const isDhry2Bundle = bundleUrl.indexOf(dhry2Bundle) >= 0;
-        const ci = await dos.run(bundleUrl);
+        const isDhry2Bundle = (bundleUrl as string).indexOf(dhry2Bundle) >= 0;
+        const ci = await dos.run(bundleUrl as string);
         if (isDhry2Bundle) {
             addDhry2Decorator(dos, ci);
         }
