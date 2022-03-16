@@ -53,7 +53,7 @@ bodyClass: page
 	</div>
 
     <h2 class="my-2 font-bold">Singleplayer</h2>
-    <a class="button-blue my-1" href="{{permalink.slice('/multiplayer'.length)}}" target="_self">
+    <a class="button-blue my-1" href="{{metadata.rootUrl}}{{permalink.slice('/multiplayer'.length)}}" target="_self">
         Open {{shortTitle}} singleplayer
     </a>
     {% endif %}
@@ -150,7 +150,7 @@ bodyClass: page
         <p>{{text | safe}}</p>
 	    <p itemprop="description">
           <span class="font-bold">{{shortTitle}}</span> is a famous and most played <span class="font-bold text-purple-600">DOS</span> game that supports <span class="font-bold">Multiplayer</span> games.
-          Play DOOM with your friends in <span class="font-bold">Browser</span> for free without registration {{shortTitle}} on mobile.
+          Play {{shortTitle}} with your friends in <span class="font-bold">Browser</span> for free without registration {{shortTitle}} on mobile.
         </p>
 	</div>
 </div>

@@ -2,6 +2,7 @@
   "favicon": "/resources/favicon.ico",
   "share": "/resources/logo-192.png",
   "rootUrl": "https://dos.zone",
+  "httpRootUrl": "http://dos.zone",
   "author": "caiiiycuk",
   "mail": "caiiiycuk@gmail.com",
   "social": "doszone_db"

@@ -185,12 +185,12 @@ function extractSymbolsCollection(symbols, collectionApi) {
 
     return collectionApi.getFilteredByGlob("_pages/*.njk").filter((v) => {
         const title  = v.data.shortTitle.trim().toLowerCase();
-        let letter  = title[0];
+        let letter = title[0];
         if (title.startsWith("a ")) {
             letter = title[2];
         } else if (title.startsWith("the ")) {
             letter = title[4];
         }
-        return hash[letter];
+        return hash[letter] || hash[title[0]];
     }).sort((a, b) => a.data.shortTitle.localeCompare(b.data.shortTitle));
 }

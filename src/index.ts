@@ -3,6 +3,7 @@ import { initPlayer } from "./player";
 import { initAuth } from "./auth";
 import { initCode } from "./code";
 import { hasDataFiles } from "./location-options";
+import { unroot } from "./unroot";
 
 function init() {
     initPlatform();
@@ -22,6 +23,8 @@ function initPlatform() {
     if ((window as any).hardware === undefined) {
         document.getElementById("android-app-link")?.classList.remove("gone");
         document.getElementById("mobile-android-app-link")?.classList.remove("gone");
+    } else {
+        unroot();
     }
 }
 

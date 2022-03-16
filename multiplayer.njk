@@ -18,7 +18,7 @@ catalog: true
 <div>
     {% for item in collections.games %}
         {% if item.data.multiplayer %}
-        <a class="my-2 ml-4 underline uppercase cursor-pointer text-lg" href="/multiplayer{{item.data.permalink}}" target="_self">
+        <a class="my-2 ml-4 underline uppercase cursor-pointer text-lg" href="{{metadata.httpRootUrl}}/multiplayer{{item.data.permalink}}" target="_self">
             {{item.data.shortTitle}}
         </a>
         {% endif %}
