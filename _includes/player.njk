@@ -18,17 +18,33 @@
         <meta name="twitter:dnt" content="on">
         <meta name="google-signin-client_id" content="673757892813-i4bas1tjuac7t1crf0v6olm4o2e99ct8.apps.googleusercontent.com">
         <title>DOS.Zone Player</title>
-        <link rel="canonical" href="{{ metadata.rootUrl}}{{ page.url }}" />
+        <link rel="canonical" href="{{ metadata.rootUrl}}{{ page.url }}"/>
         <link rel="icon" type="image/png" href="{{ metadata.favicon }}">
         <link rel="dns-prefetch" href="{{ metadata.rootUrl }}">
         <link rel="preconnect" href="{{ metadata.rootUrl }}">
         <link rel="me" href="https://twitter.com/intent/user?screen_name=caiiiycuk" type="text/html">
         <link rel="me" href="mailto:caiiiycuk@gmail.com">
         <style type="text/css">
+            * {
+                -ms-touch-action: none;
+                -ms-content-zooming: none;
+                touch-action: none;
+            }
             html,
             body {
                 width: 100%;
                 height: 100%;
+            }
+            .disable-selection div {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                -ms-touch-action: none;
+                -ms-content-zooming: none;
+                touch-action: none;
             }
             .gone {
                 display: none !important;
@@ -69,7 +85,7 @@
         </style>
         <link rel="stylesheet" href="/resources/js-dos/js-dos.css">
     </head>
-    <body>
+    <body class="disable-selection">
         <div class="jsdos-content"></div>
         <div class="jsdos-dhry2-test gone">
             <h1>Dhrystone Benchmark</h1>

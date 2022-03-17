@@ -44,6 +44,7 @@ export function initPlayer() {
 
     if (bundleUrl === null) {
         console.error("bundle url is not specified, exiting...");
+        location.replace("/");
         return;
     }
 

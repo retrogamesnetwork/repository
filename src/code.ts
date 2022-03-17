@@ -1,4 +1,5 @@
 import { extractBundleUrl } from "./bundle-url";
+import { hasExperimentalApi } from "./location-options";
 
 export function initCode() {
     const code = document.getElementsByClassName("jsdos-code")[0] as HTMLDivElement;
@@ -30,14 +31,16 @@ export function initCode() {
                 return;
             }
 
-            const src = "https://dos.zone/player/?bundleUrl=" + encodeURIComponent(bundleUrl);
+            const src = "https://dos.zone/player/?bundleUrl=" + encodeURIComponent(bundleUrl) +
+                "?anonymous=1" +
+                 (hasExperimentalApi() ? "&experimental=1" : "");
 
             pre.innerText = `
 <iframe
-    width="640"
-    height="480"
+    width="680"
+    height="400"
     frameborder="0"
-    src="${src}?anonymous=1"
+    src="${src}"
     allowfullscreen>
 </iframe>           
 <!--

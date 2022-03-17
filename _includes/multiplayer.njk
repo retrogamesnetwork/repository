@@ -41,9 +41,23 @@ bodyClass: page
                 <span class="tag">{{bundle.title}}</span>
                 {% endif %}
                 {% if bundle.type == "js" %}
-                <a class="ml-2 self-center text-black cursor-pointer" href="/studio/?url=https%3A%2F%2Fdoszone-uploads.s3.dualstack.eu-central-1.amazonaws.com%2F{{bundle.url}}" target="_blank">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                <div class="jsdos-code-button ml-2 self-center text-black font-bold cursor-pointer" data-bundle="{{bundle.url}}">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </div>
+                <a title="Fork" class="ml-2 self-center text-black cursor-pointer" href="/studio/?url=https%3A%2F%2Fdoszone-uploads.s3.dualstack.eu-central-1.amazonaws.com%2F{{bundle.url}}" target="_blank" rel="nofollow">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+                        <g id="fork_1_">
+                            <g>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.71,11.29C16.53,11.11,16.28,11,16,11c-0.55,0-1,0.45-1,1
+                                    c0,0.28,0.11,0.53,0.29,0.71L16.59,14h-2.17l-8-8h10.17l-1.29,1.29C15.11,7.47,15,7.72,15,8c0,0.55,0.45,1,1,1
+                                    c0.28,0,0.53-0.11,0.71-0.29l3-3C19.89,5.53,20,5.28,20,5c0-0.28-0.11-0.53-0.29-0.71l-3-3C16.53,1.11,16.28,1,16,1
+                                    c-0.55,0-1,0.45-1,1c0,0.28,0.11,0.53,0.29,0.71L16.59,4H1C0.45,4,0,4.45,0,5c0,0.55,0.45,1,1,1h2.59l9.71,9.71
+                                    C13.47,15.89,13.72,16,14,16h2.59l-1.29,1.29C15.11,17.47,15,17.72,15,18c0,0.55,0.45,1,1,1c0.28,0,0.53-0.11,0.71-0.29l3-3
+                                    C19.89,15.53,20,15.28,20,15c0-0.28-0.11-0.53-0.29-0.71L16.71,11.29z"/>
+                            </g>
+                        </g>
                     </svg>
                 </a>
                 {% endif %}
@@ -63,7 +77,7 @@ bodyClass: page
     <div class="flex flex-col">
         <div class="flex flex-row mb-2 items-center">
             <h3 class="font-bold text-lg">Instructions</h3>
-            <a href="https://youtu.be/XEoWLQmU168" target="_blank" class="cursor-pointer ml-1 text-purple-600" title="Tutorial Video">
+            <a href="https://youtu.be/XEoWLQmU168" target="_blank" class="cursor-pointer ml-1 text-purple-600" title="Tutorial Video" rel="nofollow">
 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
 </svg>
@@ -88,7 +102,7 @@ bodyClass: page
 
         <div class="flex flex-row mt-8 items-center">
             <p class="font-bold">If you will <span class="font-bold text-purple-600">host</span> the game, you need to:</p>
-            <a href="https://youtu.be/XEoWLQmU168" target="_blank" class="cursor-pointer ml-1 text-purple-600" title="Host video">
+            <a href="https://youtu.be/XEoWLQmU168" target="_blank" class="cursor-pointer ml-1 text-purple-600" title="Host video" rel="nofollow">
 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
 </svg>
@@ -103,7 +117,7 @@ bodyClass: page
 
         <div class="flex flex-row mt-8 items-center">
             <p class="font-bold">If you will connect to the existing game:</p>
-            <a href="https://youtu.be/XEoWLQmU168?t=63" target="_blank" class="cursor-pointer ml-1 text-purple-600" title="Client video">
+            <a href="https://youtu.be/XEoWLQmU168?t=63" target="_blank" class="cursor-pointer ml-1 text-purple-600" title="Client video" rel="nofollow">
 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
 </svg>
@@ -116,9 +130,9 @@ bodyClass: page
 
         <p class="font-bold mt-8 text-lg">Matchmaking</p>
         <p>You can find multiplayer opponents in following 
-            <a class="font-bold underline text-purple-600" href="https://discord.com/invite/hMVYEbG" target="_blank">Discord</a> 
+            <a class="font-bold underline text-purple-600" href="https://discord.com/invite/hMVYEbG" target="_blank" rel="nofollow">Discord</a> 
             or 
-            <a class="font-bold underline text-purple-600" href="https://t.me/doszonechat" target="_blank">Telegram</a>
+            <a class="font-bold underline text-purple-600" href="https://t.me/doszonechat" target="_blank" rel="nofollow">Telegram</a>
             channels</p>
     </div>
 </div>
@@ -156,4 +170,4 @@ bodyClass: page
 </div>
 {% endif %}
 
-<a class="edit-page" href="https://github.com/js-dos/repository/issues/new?title={{permalink}}" target="_blank">Edit the page</a>
+<a class="edit-page" href="https://github.com/js-dos/repository/issues/new?title={{permalink}}" target="_blank" rel="nofollow">Edit the page</a>
