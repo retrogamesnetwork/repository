@@ -4,6 +4,7 @@ import { initAuth } from "./auth";
 import { initCode } from "./code";
 import { hasDataFiles } from "./location-options";
 import { unroot } from "./unroot";
+import { initPlayInApp } from "./play-in-app";
 
 function init() {
     initPlatform();
@@ -19,6 +20,7 @@ function initPlatform() {
     if (isMobile) {
         document.getElementById("mobile-catalog-link")?.classList.remove("gone");
     }
+    initPlayInApp();
 
     if ((window as any).hardware === undefined) {
         document.getElementById("android-app-link")?.classList.remove("gone");
@@ -32,7 +34,7 @@ function initDatafilesViewIfNeeded() {
     if (hasDataFiles()) {
         const el = document.getElementById("datafiles") as HTMLDetailsElement | null;
         if (el) {
-            el.open = true;
+            el.classList.remove("gone");
         }
     }
 }

@@ -1,15 +1,22 @@
 ---
 bundles:
 - lang: ENG
-  mobile: false
-  title: +lowres
+  mobile: true
+  title: 320x200
   type: js
-  url: original/2X/0/049dddc01c5b8e40aefb48870450534d4d7cf068.jsdos
+  url: custom/dos/duke3d_320.jsdos
 - lang: ENG
-  mobile: false
-  title: .hires
-  type: cloud
-  url: https%3A%2F%2Fdoszone-uploads.s3.dualstack.eu-central-1.amazonaws.com%2Foriginal%2F2X%2Ff%2Ff314f7288d8f0af82efe6d0d4083825e83ff39f2.jsdos
+  mobile: true
+  title: 640x480
+  type: js
+  url: custom/dos/duke3d_640.jsdos
+  hardware: true
+- lang: ENG
+  mobile: true
+  title: 800x600
+  type: js
+  url: custom/dos/duke3d_800.jsdos
+  hardware: true
 layout: page.njk
 ogDescription: Duke Nukem 3D is a famous and most played DOS game that now is available
   to play in browser. With virtual mobile controls you also can play in Duke Nukem
@@ -19,5 +26,14 @@ screenshots:
 - https://cdn.dos.zone/original/2X/6/6531d7e5e88eaf1dd71871484156712016d798a0.jpeg
 shortTitle: Duke Nukem 3D
 title: Duke Nukem 3D | 🕹️Play Duke Nukem 3D Online | DOS game in browser
-
 ---
+
+
+<div class="flex flex-col">
+    <p class="font-bold text-lg">Controls</p>
+    <p>Movement: WASD</p>
+    <p>Lookaround: Mouse</p>
+    <p>Jump: E</p>
+    <p>Crouch: Q</p>
+    <p>Open: Space</p>
+</div>

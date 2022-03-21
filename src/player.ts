@@ -84,6 +84,7 @@ export function initPlayer() {
                 ((window.location.search || "").length > 0 ?
                     "&" + window.location.search.substring(1) : "") +
                  (hasExperimentalApi() ? "&experimental=1" : "");
+            iframe.focus();
 
 
             ev.stopPropagation();

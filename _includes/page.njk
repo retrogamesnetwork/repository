@@ -34,8 +34,8 @@ bodyClass: page
 				<a class="button-green" href="{{bundle.url}}" target="_blank" rel="nofollow">
 					Install {{bundle.title}}
 				</a>
-				<details id="datafiles" class="datafiles" >
-					<summary>Data Files</summary>
+				<div id="datafiles" class="datafiles gone" >
+					<div class="font-bold mt-1">Data Files</div>
 			{% endif %}
 			{% if bundle.type == "datafile" %}
 					<div class="bundle-row items-center">
@@ -56,7 +56,7 @@ bodyClass: page
 					</div>
 			{% endif %}
 		{% endfor %}
-				</details>
+				</div>
 		{% endif %}
 
 		{% if js == true %}
@@ -65,7 +65,7 @@ bodyClass: page
 			{% if bundle.type == "js" or bundle.type == "external-js" %}
 				<div class="bundle-row items-center">
 					{% if bundle.type == "js" %}
-					<div class="jsdos-bundle button-green my-1 font-bold" data-bundle="{{bundle.url}}">
+					<div class="jsdos-bundle hardware-{{bundle.hardware}} button-green my-1 font-bold" data-bundle="{{bundle.url}}">
 						Play online
 					</div>
 					{% else %}
