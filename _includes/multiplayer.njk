@@ -75,8 +75,14 @@ bodyClass: page
 
 <div class="bg-purple-100 mx-2 my-4 p-4 flex-grow">
     <div class="flex flex-col">
+        {% if catalog %}
+        {% elif content %}
+        <div class="mb-2">
+            {{content | safe}}
+        </div>
+        {% endif %}
         <div class="flex flex-row mb-2 items-center">
-            <h3 class="font-bold text-lg">Instructions</h3>
+            <h3 class="font-bold text-lg">How to connect</h3>
             <a href="https://youtu.be/XEoWLQmU168" target="_blank" class="cursor-pointer ml-1 text-purple-600" title="Tutorial Video" rel="nofollow">
 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />

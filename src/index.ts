@@ -25,7 +25,11 @@ function initPlatform() {
     if ((window as any).hardware === undefined) {
         document.getElementById("android-app-link")?.classList.remove("gone");
         document.getElementById("mobile-android-app-link")?.classList.remove("gone");
-    } else {
+    }
+
+    if ((window as any).hardware !== undefined ||
+        location.host === "localhost" ||
+        location.host[0] === "1") {
         unroot();
     }
 }
