@@ -44,7 +44,8 @@ export function initPlayer() {
 
     if (bundleUrl === null) {
         console.error("bundle url is not specified, exiting...");
-        location.replace("/");
+        document.getElementsByClassName("page404")[0]?.classList.remove("gone");
+        setTimeout(() => location.replace("/"), 3000);
         return;
     }
 
@@ -106,11 +107,24 @@ export function initPlayer() {
         onExit: () => {
             window.removeEventListener("keydown", preventListener, { capture: true });
             window.removeEventListener("message", onServerMessage);
+            window.removeEventListener("message", onCaptureStream);
             window.parent.postMessage({ message: "dz-player-exit" }, "*");
         },
     });
 
+    const onCaptureStream = (e: any) => {
+        if (e.data.message !== "dz-capture-stream") {
+            return;
+        }
+
+        const stream = dos.layers.canvas.captureStream();
+        if (stream) {
+            offerStream(stream);
+        }
+    };
+
     window.addEventListener("message", onServerMessage);
+    window.addEventListener("message", onCaptureStream);
     window.addEventListener("keydown", preventListener, { capture: true });
 
     setTimeout(async () => {
@@ -131,6 +145,26 @@ function installWindowOpenProxy() {
             wo(url, target);
         }
     };
+}
+
+async function offerStream(stream: MediaStream) {
+    const pc = new RTCPeerConnection({});
+    stream.getTracks().forEach((track) => pc.addTrack(track, stream));
+    const descriptor = await pc.createOffer();
+    pc.setLocalDescription(descriptor);
+    window.parent.postMessage({ message: "dz-stream-local-descriptor", offer: btoa(JSON.stringify(descriptor)) }, "*");
+
+    const onRemoteDescriptor = (e: any) => {
+        if (e.data.message !== "dz-stream-remote-descriptor") {
+            return;
+        }
+
+        const remoteDescriptor = JSON.parse(atob(e.data.offer));
+        pc.setRemoteDescription(new RTCSessionDescription(remoteDescriptor));
+
+        window.removeEventListener("message", onRemoteDescriptor);
+    };
+    window.addEventListener("message", onRemoteDescriptor);
 }
 
 installWindowOpenProxy();

@@ -82,6 +82,27 @@
             .jsdos-dhry2-span-8 {
                 color: #FFC940;
             }
+            .page404 {
+                position: fixed;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .httpCode {
+                font-size: 2em;
+                font-weight: bold;
+                color: red;
+            }
+            .page404 a {
+                text-decoration: underline;
+                color: blue;
+                font-size: 1.2em;
+            }
         </style>
         <link rel="stylesheet" href="/resources/js-dos/js-dos.css">
     </head>
@@ -108,6 +129,11 @@
                 <span class="jsdos-dhry2-span-7"></span>
                 <span class="jsdos-dhry2-span-8"></span>
             </p>
+        </div>
+        <div class="page404 gone">
+            <span class="httpCode">404</span>
+            <span>Page not found, you will be automatically redirected to</span>
+            <a href="/">DOS Zone</a>
         </div>
         <script src="/resources/js-dos/js-dos.js"></script>
         <script>

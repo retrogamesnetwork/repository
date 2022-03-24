@@ -16,7 +16,7 @@ export function initPlayer() {
         iframe.contentWindow?.postMessage({
             message: "dz-server-message",
             payload: message,
-        });
+        }, "*");
     };
 
     const el = frame as any;
