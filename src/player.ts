@@ -5,10 +5,10 @@ import { hasDataFiles, hasExperimentalApi } from "./location-options";
 export function initPlayer() {
     const body = document.body;
     const datafiles = hasDataFiles();
-    const frame = document.getElementsByClassName("jsdos-frame")[0] as HTMLDivElement;
+    const root = document.getElementsByClassName("jsdos-root")[0] as HTMLDivElement;
     const iframe = document.getElementsByClassName("jsdos-iframe")[0] as HTMLIFrameElement;
 
-    if (!frame || !iframe || datafiles) {
+    if (!root || !iframe || datafiles) {
         return;
     }
 
@@ -19,7 +19,7 @@ export function initPlayer() {
         }, "*");
     };
 
-    const el = frame as any;
+    const el = iframe as any;
     if (!el.requestFullscreen &&
             !el.webkitRequestFullscreen &&
             !el.mozRequestFullScreen &&
@@ -66,7 +66,8 @@ export function initPlayer() {
         window.removeEventListener("message", exitListener);
 
         body.classList.remove("disable-selection");
-        frame.classList.add("gone");
+        body.classList.remove("overflow-hidden");
+        root.classList.add("gone");
     };
 
     for (let i = 0; i < bundles.length; ++i) {
@@ -78,9 +79,11 @@ export function initPlayer() {
             }
 
             body.classList.add("disable-selection");
-            frame.classList.remove("gone");
+            body.classList.add("overflow-hidden");
+            root.classList.remove("gone");
 
             iframe.src = "/player/?bundleUrl=" + encodeURIComponent(bundleUrl) +
+                "&exit=1" +
                 ((window.location.search || "").length > 0 ?
                     "&" + window.location.search.substring(1) : "") +
                  (hasExperimentalApi() ? "&experimental=1" : "");

@@ -5,12 +5,14 @@ import { initCode } from "./code";
 import { hasDataFiles } from "./location-options";
 import { unroot } from "./unroot";
 import { initPlayInApp } from "./play-in-app";
+import { initLiveFrame } from "./live-frame";
 
 function init() {
     initPlatform();
     initDatafilesViewIfNeeded();
     initSearch();
     initPlayer();
+    initLiveFrame();
     initAuth();
     initCode();
 }

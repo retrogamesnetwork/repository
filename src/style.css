@@ -72,6 +72,10 @@ a#mobile-catalog-link {
 	min-height: 80px;
 }
 
+.overlay {
+    z-index: 1001;
+}
+
 /* TODO: refactor to use tailwind.css */
 
 .margin-right {
@@ -214,7 +218,6 @@ a#mobile-catalog-link {
 
 .jsdos-code,
 .jsdos-frame {
-    position: fixed;
     left: 20px;
     top: 20px;
     right: 25px;
@@ -228,11 +231,33 @@ a#mobile-catalog-link {
 }
 
 .jsdos-frame {
+    position: absolute;
     bottom: 25px;
 }
 
 .jsdos-code {
+    position: fixed;
     padding: 5px 10px;
+}
+
+.live-frame {
+    display: block;
+    width: 400px;
+    z-index: 1000;
+
+    background: #475569;
+  	box-shadow: 15px 15px rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border: 5px double white;
+
+    margin-top: 20px;
+    margin-bottom: 25px;
+    margin-right: 20px;
+}
+
+.stream-frame {
+    @apply w-full;
+    height: calc(100vh - 100px);
 }
 
 @media screen and (max-width: 960px) {
@@ -246,6 +271,19 @@ a#mobile-catalog-link {
         box-shadow: none;
         padding: 0;
         background: none;
+    }
+
+    .live-frame {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        margin: 0;
+        border: none;
+        padding: 0;
+        box-shadow: none;
     }
 }
 

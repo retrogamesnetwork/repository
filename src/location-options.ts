@@ -31,3 +31,11 @@ export function hasNoShared() {
 export function hasAnonymous() {
     return search.indexOf("anonymous=1") >= 0;
 }
+
+export function hasExit() {
+    return search.indexOf("exit=1") >= 0;
+}
+
+export function hasLive() {
+    return search.indexOf("live=1") >= 0;
+}

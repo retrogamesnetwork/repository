@@ -1,0 +1,27 @@
+---
+layout: base.njk
+title: Stream | DOS.Zone
+ogDescription: Watch live stream on DOS.Zone
+noIndex: true
+---
+
+<div>
+    <iframe 
+        class="stream-frame"
+        src="" 
+        name="stream-frame">
+    </iframe>
+</div>
+
+<script>
+    const id = new URLSearchParams(window.location.search).get("join");
+    if (id) {
+        const frame = document.querySelector(".stream-frame");
+        frame.onload = () => {
+            setTimeout(() => {
+                window.scrollTo(0, 80);
+            }, 1000);
+        };
+        frame.src = `https://cdn.dos.zone/live/index.html?join=${id}`;
+    }
+</script>
