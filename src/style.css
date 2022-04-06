@@ -255,11 +255,6 @@ a#mobile-catalog-link {
     margin-right: 20px;
 }
 
-.stream-frame {
-    @apply w-full;
-    height: calc(100vh - 100px);
-}
-
 @media screen and (max-width: 960px) {
     .jsdos-frame {
         left: 0;
@@ -275,9 +270,8 @@ a#mobile-catalog-link {
 
     .live-frame {
         position: absolute;
-        left: 0;
+        right: 0;
         top: 0;
-        width: 100%;
         height: 100%;
 
         margin: 0;

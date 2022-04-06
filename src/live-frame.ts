@@ -1,7 +1,8 @@
 import { hasLive } from "./location-options";
 
 export function initLiveFrame() {
-    if (!hasLive()) {
+    const isMultiplayerPage = location.href.indexOf("/multiplayer/") >= 0;
+    if (!hasLive() && !isMultiplayerPage) {
         return;
     }
 
@@ -10,7 +11,27 @@ export function initLiveFrame() {
     const maximizeChat = document.getElementsByClassName("chat-maxi")[0] as HTMLDivElement;
     const minimizeChat = document.getElementsByClassName("chat-mini")[0] as HTMLDivElement;
     const jsdos = document.getElementsByClassName("jsdos-iframe")[0] as HTMLIFrameElement;
+
     let networkToken: string | null = null;
+    let roomName: string | null = null;
+    let linkPrefixSet: boolean = false;
+
+    function updateRoomName() {
+        if (networkToken === null || networkToken === roomName) {
+            return;
+        }
+
+        if (frame.contentWindow === null) {
+            return;
+        }
+
+        roomName = networkToken;
+        frame.contentWindow.postMessage({
+            message: "live-set-room",
+            room: "net/" + roomName,
+            label: "Join chat",
+        }, "*");
+    }
 
     chat.classList.remove("gone");
 
@@ -29,18 +50,15 @@ export function initLiveFrame() {
                     return;
                 }
 
-                frame.contentWindow.postMessage({
-                    message: "live-link-prefix",
-                    liveLinkPrefix: "https://dos.zone/stream/",
-                }, "*");
-
-                if (networkToken !== null) {
+                if (linkPrefixSet === false) {
                     frame.contentWindow.postMessage({
-                        message: "live-set-room",
-                        room: "net/" + networkToken,
+                        message: "live-link-prefix",
+                        liveLinkPrefix: "https://dos.zone/stream/",
                     }, "*");
+                    linkPrefixSet = true;
                 }
 
+                updateRoomName();
                 clearInterval(linkIntervalId);
             }, 1000);
         }
@@ -56,18 +74,12 @@ export function initLiveFrame() {
         }
 
         if (e.data.message === "jsdos-network-token") {
-            const token = e.data.token;
-            if (token !== networkToken) {
-                networkToken = token;
-                frame.contentWindow?.postMessage({
-                    message: "live-set-room",
-                    room: "net/" + networkToken,
-                }, "*");
-            }
+            networkToken = e.data.token;
+            updateRoomName();
         }
     });
 
-    if (location.href.indexOf("/multiplayer/") >= 0) {
+    if (isMultiplayerPage) {
         setInterval(() => {
             jsdos.contentWindow?.postMessage({ message: "jsdos-get-network-token" }, "*");
         }, 1000);

@@ -93,6 +93,8 @@
     <div class="content">
       {{ content | safe }}
     </div>
+    {% if noFooter %}
+    {% else %}
     <div class="footer">
       <div class="author">
         <h4>Support</h4>
@@ -128,6 +130,7 @@
         </a>
       </div>
     </div>
+    {% endif %}
     <div class="jsdos-code flex flex-col items-start max-h-full gone">
         <div class="text-white mt-2 self-center">
             Copy and paste this code into HTML5 page
@@ -147,8 +150,7 @@
         </div>
         <iframe class="live-frame gone" name="live-frame"
              src="https://cdn.dos.zone/live/index.html" 
-             allow="microphone; camera"
-             name="live">
+             allow="microphone; camera">
         </iframe>
         <div class="text-white rounded-full border-2 border-white p-3 absolute right-2 top-2
             bg-gradient-to-b from-yellow-400 via-red-500 to-pink-500 cursor-pointer 
