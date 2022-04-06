@@ -255,6 +255,11 @@ a#mobile-catalog-link {
     margin-right: 20px;
 }
 
+.stream-frame {
+    @apply w-full;
+    height: 100vh;
+}
+
 @media screen and (max-width: 960px) {
     .jsdos-frame {
         left: 0;
