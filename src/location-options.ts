@@ -1,6 +1,7 @@
 const href = window.location.href || "";
 const host = window.location.host || "";
 const search = window.location.search || "";
+const mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 export function hasDataFiles() {
     return search.indexOf("datafiles=true") >= 0;
@@ -39,3 +40,8 @@ export function hasExit() {
 export function hasLive() {
     return search.indexOf("live=1") >= 0;
 }
+
+export function isMobile() {
+    return mobile;
+}
+

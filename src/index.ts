@@ -2,7 +2,7 @@ import { initSearch } from "./search";
 import { initPlayer } from "./player";
 import { initAuth } from "./auth";
 import { initCode } from "./code";
-import { hasDataFiles } from "./location-options";
+import { hasDataFiles, isMobile } from "./location-options";
 import { unroot } from "./unroot";
 import { initPlayInApp } from "./play-in-app";
 import { initLiveFrame } from "./live-frame";
@@ -18,8 +18,7 @@ function init() {
 }
 
 function initPlatform() {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (isMobile) {
+    if (isMobile()) {
         document.getElementById("mobile-catalog-link")?.classList.remove("gone");
     }
     initPlayInApp();

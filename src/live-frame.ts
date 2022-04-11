@@ -1,8 +1,11 @@
-import { hasLive } from "./location-options";
+import { hasLive, isMobile } from "./location-options";
+
+let linkPrefixSet: boolean = false;
+let gameNameSet: boolean = false;
 
 export function initLiveFrame() {
     const isMultiplayerPage = location.href.indexOf("/multiplayer/") >= 0;
-    if (!hasLive() && !isMultiplayerPage) {
+    if ((isMobile() && !hasLive()) && !isMultiplayerPage) {
         return;
     }
 
@@ -14,7 +17,6 @@ export function initLiveFrame() {
 
     let networkToken: string | null = null;
     let roomName: string | null = null;
-    let linkPrefixSet: boolean = false;
 
     function updateRoomName() {
         if (networkToken === null || networkToken === roomName) {
@@ -56,6 +58,23 @@ export function initLiveFrame() {
                         liveLinkPrefix: "https://dos.zone/stream/",
                     }, "*");
                     linkPrefixSet = true;
+                }
+
+                if (gameNameSet === false) {
+                    // eslint-disable-next-line
+                    const title = (document.querySelector("meta[name='twitter:title']") as HTMLMetaElement | null)?.content || "";
+                    const game = title.substring(0, title.indexOf("|") - 1);
+                    // eslint-disable-next-line
+                    const image = (document.querySelector("meta[name='twitter:image']") as HTMLMetaElement | null)?.content || "";
+
+                    frame.contentWindow.postMessage({
+                        message: "live-set-game",
+                        game: JSON.stringify({
+                            game,
+                            image,
+                        }),
+                    }, "*");
+                    gameNameSet = true;
                 }
 
                 updateRoomName();
