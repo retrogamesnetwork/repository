@@ -32,15 +32,6 @@
     <link rel="me" href="https://twitter.com/intent/user?screen_name=caiiiycuk" type="text/html">
     <link rel="me" href="mailto:caiiiycuk@gmail.com">
     <link rel="stylesheet" href="/resources/index.css">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WGNC11FJB"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-0WGNC11FJB');
-    </script>
     <script type="text/javascript" >
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
@@ -83,9 +74,18 @@
     </div>
     <div class="search-line">
       <div id="search" class="rounded"></div>
-      <div class="flex flex-row flex-wrap mt-2 -mb-2 text-sm underline">
-        <a id="mobile-catalog-link" href="/mobile/" target="_self" class="mr-4 text-black cursor-pointer gone">Mobile catalog</a>
-        <a id="android-app-link" href="https://play.google.com/store/apps/details?id=zone.dos.app" target="_blank" class="mr-4 text-black cursor-pointer gone">Android version</a>
+      <div class="flex flex-row flex-wrap mt-1 -mb-3  text-sm">
+        <a id="mobile-catalog-link" 
+            href="/mobile/" 
+            target="_self" 
+            class="search-line-button mr-4 bg-yellow-600 hover:bg-pink-600 gone">Mobile catalog</a>
+        <a id="android-app-link" 
+            href="https://play.google.com/store/apps/details?id=zone.dos.app" 
+            target="_blank" 
+            class="search-line-button mr-4 bg-red-500 hover:bg-pink-600 gone">Android version</a>
+        <p class="flex-grow"></p>
+        <a class="search-line-button mr-px bg-pink-600 hover:bg-yellow-400" 
+            href="https://dos.zone/donate">Donate</a>
       </div>
     </div>
     <div class="content">

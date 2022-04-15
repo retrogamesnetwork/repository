@@ -6,12 +6,6 @@
     @apply text-blue-400;
 }
 
-a#android-app-link,
-a#mobile-catalog-link {
-    @apply text-black !important;
-
-}
-
 * {
     -ms-touch-action: pan-x pan-y;
     -ms-content-zooming: pan-x pan-y;
@@ -70,6 +64,12 @@ a#mobile-catalog-link {
 .search-line {
     @apply p-5 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500;
 	min-height: 80px;
+}
+
+.search-line-button {
+    @apply uppercase font-bold font-mono pt-1 px-4 mt-px;
+    text-decoration: none !important;
+    color: white !important;
 }
 
 .overlay {
