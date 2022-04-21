@@ -113,6 +113,8 @@ export function initPlayer() {
         } : undefined,
     });
 
+    (window as any).dos = dos;
+
     liveCapture(dos.layers.canvas);
 
     window.addEventListener("message", onServerMessage);
