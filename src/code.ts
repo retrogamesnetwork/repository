@@ -1,5 +1,5 @@
 import { extractBundleUrl } from "./bundle-url";
-import { hasExperimentalApi, hasNetworkingApi } from "./location-options";
+import { hasNetworkingApi } from "./location-options";
 
 export function initCode() {
     const code = document.getElementsByClassName("jsdos-code")[0] as HTMLDivElement;
