@@ -77,7 +77,7 @@ export function initPlayer() {
     };
 
     const hardware = (window as any).hardware;
-    const preventUnload = hardware?.preventUnload === true;
+    const preventUnload = hardware?.preventUnload !== false;
 
     // eslint-disable-next-line new-cap
     const dos = Dos(root, {
