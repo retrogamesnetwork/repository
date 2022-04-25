@@ -1,6 +1,6 @@
 import { extractBundleUrl } from "./bundle-url";
 import { getLoggedUser, login } from "./auth";
-import { hasDataFiles, hasExperimentalApi } from "./location-options";
+import { hasDataFiles, hasExperimentalApi, hasNetworkingApi } from "./location-options";
 
 export function initPlayer() {
     const body = document.body;
@@ -86,7 +86,8 @@ export function initPlayer() {
                 "&exit=1" +
                 ((window.location.search || "").length > 0 ?
                     "&" + window.location.search.substring(1) : "") +
-                 (hasExperimentalApi() ? "&experimental=1" : "");
+                 (hasExperimentalApi() ? "&experimental=1" : "") +
+                 (hasNetworkingApi() ? "&networking=1" : "");
             iframe.focus();
 
 

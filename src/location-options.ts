@@ -8,8 +8,12 @@ export function hasDataFiles() {
 }
 
 export function hasExperimentalApi() {
+    return search.indexOf("experimental=1") >= 0;
+}
+
+export function hasNetworkingApi() {
     return href.indexOf("/multiplayer/") >= 0 ||
-        search.indexOf("experimental=1") >= 0;
+        search.indexOf("networking=1") >= 0;
 }
 
 export function hasDirect() {

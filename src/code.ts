@@ -1,5 +1,5 @@
 import { extractBundleUrl } from "./bundle-url";
-import { hasExperimentalApi } from "./location-options";
+import { hasExperimentalApi, hasNetworkingApi } from "./location-options";
 
 export function initCode() {
     const code = document.getElementsByClassName("jsdos-code")[0] as HTMLDivElement;
@@ -33,7 +33,7 @@ export function initCode() {
 
             const src = "https://dos.zone/player/?bundleUrl=" + encodeURIComponent(bundleUrl) +
                 "?anonymous=1" +
-                 (hasExperimentalApi() ? "&experimental=1" : "");
+                 (hasNetworkingApi() ? "&networking=1" : "");
 
             pre.innerText = `
 <iframe

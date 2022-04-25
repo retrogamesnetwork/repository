@@ -33,9 +33,11 @@ export function initLiveFrame() {
             room: "net/" + roomName,
             label: "Join chat",
         }, "*");
-    }
 
-    chat.classList.remove("gone");
+        if (chat.classList.contains("gone")) {
+            chat.classList.remove("gone");
+        }
+    }
 
     chat.addEventListener("click", (e) => {
         if (maximizeChat.classList.contains("gone")) {
@@ -108,4 +110,8 @@ export function initLiveFrame() {
         chat.classList.remove("from-yellow-400", "via-red-500", "to-pink-500");
         chat.classList.add("from-gray-400", "via-gray-500", "to-gray-600");
     }, 5000);
+
+    if (!isMultiplayerPage) {
+        chat.classList.remove("gone");
+    }
 }

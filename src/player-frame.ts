@@ -5,6 +5,7 @@ import {
     hasNoShared, hasNoWebGL, hasShared,
     hasAnonymous,
     hasExit,
+    hasNetworkingApi,
 } from "./location-options";
 
 declare const Dos: DosPlayerFactoryType;
@@ -20,6 +21,7 @@ export function initPlayer() {
     }
 
     const withExperimentalApi = hasExperimentalApi();
+    const withNetworkingApi = hasNetworkingApi();
     const emulatorFunction = hasDirect() ? "dosboxDirect" : "dosboxWorker";
     const noWebGL = hasNoWebGL();
     let anonymous = hasAnonymous();
@@ -74,12 +76,17 @@ export function initPlayer() {
         e.preventDefault();
     };
 
+    const hardware = (window as any).hardware;
+    const preventUnload = hardware?.preventUnload === true;
+
     // eslint-disable-next-line new-cap
     const dos = Dos(root, {
-        hardware: (window as any).hardware,
+        hardware,
         noWebGL,
         emulatorFunction,
         withExperimentalApi,
+        withNetworkingApi,
+        preventUnload,
         clientId: (gesture: boolean) => {
             return new Promise<ClientId | null>((resolve) => {
                 if (anonymous) {
