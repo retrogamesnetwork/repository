@@ -61,6 +61,26 @@
     }
 }
 
+.linux-logo {
+    background-image: url(/resources/linux-logo.png);
+    @apply w-28 h-28 bg-contain bg-no-repeat;
+}
+
+.windows-logo {
+    background-image: url(/resources/windows-logo.png);
+    @apply w-28 h-28 bg-contain bg-no-repeat;
+}
+
+.apple-logo {
+    background-image: url(/resources/apple-logo.svg);
+    @apply w-28 h-28 bg-contain bg-no-repeat;
+}
+
+.gp-logo {
+    background-image: url(/resources/gp-logo.png);
+    @apply w-28 h-28 bg-contain bg-no-repeat;
+}
+
 .search-line {
     @apply p-5 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500;
 	min-height: 80px;
