@@ -1,11 +1,11 @@
-import { hasLive, isMobile } from "./location-options";
+import { hasLive } from "./location-options";
 
 let linkPrefixSet: boolean = false;
 let gameNameSet: boolean = false;
 
 export function initLiveFrame() {
     const isMultiplayerPage = location.href.indexOf("/multiplayer/") >= 0;
-    if ((isMobile() && !hasLive()) && !isMultiplayerPage) {
+    if (!hasLive()) {
         return;
     }
 
