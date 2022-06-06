@@ -120,6 +120,13 @@ export function initPlayer() {
         } : undefined,
     });
 
+    if (typeof hardware !== "undefined" && typeof hardware.onVolumeChanged === "function") {
+        dos.registerOnVolumeChanged((v) => {
+            hardware.onVolumeChanged(v);
+        });
+        hardware.onVolumeChanged(dos.volume);
+    }
+
     (window as any).dos = dos;
 
     liveCapture(dos.layers.canvas);
