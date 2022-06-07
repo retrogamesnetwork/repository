@@ -36,11 +36,15 @@ function extractTitleAndSlug(lines: string[], page: string) {
             title = next.substring("shortTitle:".length).trim();
 
             if (title.startsWith("\"") || title.startsWith("'")) {
-                title = title.substring(1);
+                title = title.substring(1).trimStart();
             }
 
             if (title.endsWith("\"") || title.endsWith("'")) {
-                title = title.substring(0, title.length - 1);
+                title = title.substring(0, title.length - 1).trimEnd();
+            }
+
+            if (title.startsWith("The ") || title.startsWith("the ")) {
+                title = title.substring(4).trimStart();
             }
         } else if (next.startsWith("permalink:")) {
             slug = next.substring("permalink:".length).trim();
