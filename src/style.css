@@ -382,3 +382,7 @@
 .jsdos-login h1 {
 	text-align: center;
 }
+
+.donate-link {
+    visibility: hidden;
+}

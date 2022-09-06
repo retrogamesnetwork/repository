@@ -87,6 +87,14 @@ export function initPlayer() {
         withExperimentalApi,
         withNetworkingApi,
         preventUnload,
+        windowOpen: (url: string, target?: string) => {
+            const proxy = (window as any).proxy;
+            if (target === "_blank" && typeof proxy === "object" && typeof proxy.windowOpen === "function") {
+                proxy.windowOpen(url, target);
+            } else {
+                window.open(url, target);
+            }
+        },
         clientId: (gesture: boolean) => {
             return new Promise<ClientId | null>((resolve) => {
                 if (anonymous) {
@@ -143,16 +151,4 @@ export function initPlayer() {
     }, 100);
 }
 
-function installWindowOpenProxy() {
-    const wo = window.open;
-    (window as any).open = function(url: string, target: string) {
-        if (target === "_blank") {
-            (window as any).proxy.windowOpen(url, target);
-        } else {
-            wo(url, target);
-        }
-    };
-}
-
-installWindowOpenProxy();
 initPlayer();
