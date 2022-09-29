@@ -95,32 +95,33 @@ export function initPlayer() {
                 window.open(url, target);
             }
         },
-        clientId: (gesture: boolean) => {
-            return new Promise<ClientId | null>((resolve) => {
-                if (anonymous) {
-                    resolve(null);
-                    return;
-                }
+        // @caiiiycuk: TODO move auth inside jsdos
+        // clientId: (gesture: boolean) => {
+        //     return new Promise<ClientId | null>((resolve) => {
+        //         if (anonymous) {
+        //             resolve(null);
+        //             return;
+        //         }
 
-                const onId = (e: any) => {
-                    if (e.data.message !== "dz-client-id-response") {
-                        return;
-                    }
-                    const { namespace, id } = e.data;
-                    if (!namespace || !id) {
-                        resolve(null);
-                    } else {
-                        resolve({
-                            namespace,
-                            id,
-                        });
-                    }
-                    window.removeEventListener("message", onId);
-                };
-                window.addEventListener("message", onId);
-                window.parent.postMessage({ message: "dz-client-id", gesture }, "*");
-            });
-        },
+        //         const onId = (e: any) => {
+        //             if (e.data.message !== "dz-client-id-response") {
+        //                 return;
+        //             }
+        //             const { namespace, id } = e.data;
+        //             if (!namespace || !id) {
+        //                 resolve(null);
+        //             } else {
+        //                 resolve({
+        //                     namespace,
+        //                     id,
+        //                 });
+        //             }
+        //             window.removeEventListener("message", onId);
+        //         };
+        //         window.addEventListener("message", onId);
+        //         window.parent.postMessage({ message: "dz-client-id", gesture }, "*");
+        //     });
+        // },
         onExit: hasExit() ? () => {
             window.removeEventListener("keydown", preventListener, { capture: true });
             window.removeEventListener("message", onServerMessage);

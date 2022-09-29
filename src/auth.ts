@@ -39,6 +39,9 @@ export interface User {
 }
 
 export function getLoggedUser(): User | null {
+    // @caiiiycuk: TODO move login system into js-dos itself
+    return null;
+
     if (useCookie) {
         // read cookie first
         for (const next of document.cookie.split("; ")) {
@@ -54,7 +57,7 @@ export function getLoggedUser(): User | null {
     // give chance to ls
     try {
         const cachedValue = localStorage.getItem(userKey);
-        return cachedValue === null || cachedValue === undefined ? null : JSON.parse(cachedValue);
+        return cachedValue === null || cachedValue === undefined ? null : JSON.parse(cachedValue as string);
     } catch (e) {
         return null;
     }
@@ -198,8 +201,13 @@ export function initAuth() {
         return;
     }
 
+    // @caiiiycuk: TODO move auth into js-dos
+    if (true) {
+        return;
+    }
+
     const domContainer = document.querySelector("#auth");
     if (domContainer !== null) {
-        render(html`<${Auth} />`, domContainer);
+        render(html`<${Auth} />`, domContainer as Element);
     }
 }

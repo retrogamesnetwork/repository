@@ -150,6 +150,7 @@ module.exports = function(config) {
         Mobile
     </a>
 </div>
+<!--
 <div class="ml-2 my-2 rounded-xl border-2 border-purple-400 bg-purple-100 cursor-pointer">
     <a class="font-bold text-lg text-purple-800 px-2 flex flex-row items-center" href="/multiplayer/">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -158,6 +159,7 @@ module.exports = function(config) {
         Multiplayer
     </a>
 </div>
+-->
             `;
         } else {
             for (let i = 0; i < rows[row].length; ++i) {

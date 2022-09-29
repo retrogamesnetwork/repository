@@ -12,8 +12,9 @@ export function hasExperimentalApi() {
 }
 
 export function hasNetworkingApi() {
-    return href.indexOf("/multiplayer/") >= 0 ||
-        search.indexOf("networking=1") >= 0;
+    // @caiiiycuk: TODO reenable this
+    return (href.indexOf("/multiplayer/") >= 0 ||
+        search.indexOf("networking=1") >= 0) && false;
 }
 
 export function hasDirect() {
