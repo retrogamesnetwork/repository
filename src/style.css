@@ -386,3 +386,19 @@
 .donate-link {
     visibility: hidden;
 }
+
+div.pp h1 {
+    @apply font-bold mt-10;
+}
+
+div.pp h2, div.pp h3 {
+    @apply mt-4 font-bold;
+}
+
+div.pp p {
+    @apply mt-4;
+}
+
+div.pp ul {
+    @apply list-disc ml-12;
+}
