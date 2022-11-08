@@ -6,7 +6,7 @@ Ultimate collection of free js-dos bundles.
 
 ## How to build
 
-1. yarn install
+1. yarn && cd sls && yarn && cd ..
 2. yarn run build
 
 ## How to deploy
