@@ -108,13 +108,11 @@ bodyClass: page
 		{% endfor %}
 		{% endif %}
   
-		{% if multiplayer == true %}
-        <!-- @caiiiycuk: TODO reenable this
+		{% if v8multiplayer == true %}
 		<h2 class="mt-2 mb-1 font-bold">{{shortTitle}} Multiplayer</h2>
-        <a class="button-blue my-1" href="{{metadata.httpRootUrl}}/multiplayer{{permalink}}" target="_self">
+        <a class="button-blue my-1" href="{{v8multiplayer_link}}" target="_self">
             Open {{shortTitle}} multiplayer
         </a>
-        -->
 		{% endif %}
 
 		{% if cloud == true %}
