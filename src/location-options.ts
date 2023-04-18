@@ -50,3 +50,6 @@ export function isMobile() {
     return mobile;
 }
 
+export function isHardware() {
+    return (window as any).hardware !== undefined;
+}

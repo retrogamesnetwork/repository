@@ -169,6 +169,7 @@
 .search-content {
 	display: flex;
 	flex-direction: row;
+    z-index: 999;
 }
 
 .search-content button {
@@ -401,4 +402,15 @@ div.pp p {
 
 div.pp ul {
     @apply list-disc ml-12;
+}
+
+.jsdos-v8-window {
+    display: none;
+    position: relative;
+    height: 20vh;
+}
+
+.jsdos-v8 {
+    @apply absolute top-12 left-0 right-0 bottom-0;
+    height: auto !important;
 }

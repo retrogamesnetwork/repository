@@ -1,8 +1,21 @@
 import { extractBundleUrl } from "./bundle-url";
 import { getLoggedUser, login } from "./auth";
-import { hasDataFiles, hasExperimentalApi, hasNetworkingApi } from "./location-options";
+import { hasDataFiles, hasExperimentalApi, hasNetworkingApi, isMobile, isHardware } from "./location-options";
+import { DosFn } from "./v8/types";
+import { cdnUrl } from "./cdn";
+
+declare const Dos: DosFn;
 
 export function initPlayer() {
+    const v8Element = document.querySelector<HTMLDivElement>(".jsdos-v8-window");
+    const v7Element = document.querySelector<HTMLDivElement>(".jsdos-v7-window");
+
+    if (v8Element !== null && v7Element !== null && !isMobile() && !isHardware()) {
+        v7Element.style.display = "none";
+        v8Element.style.display = "block";
+        return initV8Player();
+    }
+
     const body = document.body;
     const datafiles = hasDataFiles();
     const root = document.getElementsByClassName("jsdos-root")[0] as HTMLDivElement;
@@ -21,10 +34,10 @@ export function initPlayer() {
 
     const el = iframe as any;
     if (!el.requestFullscreen &&
-            !el.webkitRequestFullscreen &&
-            !el.mozRequestFullScreen &&
-            !el.msRequestFullscreen &&
-            !el.webkitEnterFullscreen) {
+        !el.webkitRequestFullscreen &&
+        !el.mozRequestFullScreen &&
+        !el.msRequestFullscreen &&
+        !el.webkitEnterFullscreen) {
         el.classList.add("jsdos-frame-fullscreen");
     }
 
@@ -86,8 +99,8 @@ export function initPlayer() {
                 "&exit=1" +
                 ((window.location.search || "").length > 0 ?
                     "&" + window.location.search.substring(1) : "") +
-                 (hasExperimentalApi() ? "&experimental=1" : "") +
-                 (hasNetworkingApi() ? "&networking=1" : "");
+                (hasExperimentalApi() ? "&experimental=1" : "") +
+                (hasNetworkingApi() ? "&networking=1" : "");
             iframe.focus();
 
 
@@ -101,4 +114,32 @@ export function initPlayer() {
             capture: true,
         });
     }
+}
+
+function initV8Player() {
+    const searchParams = new URLSearchParams(location.search);
+    const root = document.querySelector<HTMLDivElement>(".jsdos-v8")!;
+
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "https://v8.js-dos.com/latest/js-dos.css";
+    document.head.append(css);
+
+    const js = document.createElement("script");
+    js.src = "https://v8.js-dos.com/latest/js-dos.js";
+    js.onload = () => {
+        /* eslint-disable-next-line new-cap */
+        Dos(root, {
+            url: "https://cdn.dos.zone/" + root.getAttribute("data-url"),
+            theme: "light",
+            onEvent: (event) => {
+                if (event === "emu-ready") {
+                    root.parentElement!.style.height = "80vh";
+                }
+            },
+            room: searchParams.get("room") ?? undefined,
+            server: (searchParams.get("server") as any) ?? undefined,
+        });
+    };
+    document.body.append(js);
 }
