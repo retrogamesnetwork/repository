@@ -8,6 +8,10 @@ import { initPlayInApp } from "./play-in-app";
 import { initLiveFrame } from "./live-frame";
 
 function init() {
+    if (location.href.indexOf("dos.zone/multiplayer") > 0) {
+        location.href = "https://dos.zone/en/multiplayer";
+        return;
+    }
     initPlatform();
     initDatafilesViewIfNeeded();
     initSearch();
@@ -18,11 +22,6 @@ function init() {
 }
 
 function initPlatform() {
-    if (isMobile()) {
-        document.getElementById("mobile-catalog-link")?.classList.remove("gone");
-    } else {
-        showDonateLink();
-    }
     initPlayInApp();
 
     if ((window as any).hardware === undefined) {
@@ -32,7 +31,6 @@ function initPlatform() {
             document.getElementById("desktop-app-link")?.classList.remove("gone");
         }
         document.getElementById("mobile-android-app-link")?.classList.remove("gone");
-        showDonateLink();
     }
 
     if ((window as any).hardware !== undefined ||
@@ -49,12 +47,6 @@ function initDatafilesViewIfNeeded() {
             el.classList.remove("gone");
         }
     }
-}
-
-function showDonateLink() {
-    document.querySelectorAll(".donate-link").forEach((item) => {
-        (item as HTMLElement).style.visibility = "visible";
-    });
 }
 
 init();
