@@ -169,6 +169,9 @@
 .search-content {
 	display: flex;
 	flex-direction: row;
+}
+
+.search-content ul {
     z-index: 999;
 }
 
